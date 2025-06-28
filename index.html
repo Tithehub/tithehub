@@ -69,7 +69,19 @@
       padding: 8px;
       border-radius: 4px;
       display: inline-block;
-      word-break: break-all;
+      word-break: break-word;
+    }
+    input, button {
+      font-family: inherit;
+      font-size: 1em;
+    }
+    input {
+      padding: 10px;
+      width: 100%;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
     footer {
       text-align: center;
@@ -94,27 +106,27 @@
 
 <section id="features">
   <h2>Features</h2>
-  <div class="card">✅ Accept Bitcoin, Ethereum, USDC</div>
-  <div class="card">✅ Recurring fiat donations via Stripe</div>
+  <div class="card">✅ Accept Bitcoin, Ethereum, and USDC</div>
+  <div class="card">✅ Recurring donations via Stripe</div>
   <div class="card">✅ Hosted donation pages or widgets</div>
 </section>
 
 <section id="how">
   <h2>How It Works</h2>
   <div class="card">1️⃣ Sign up using the form below</div>
-  <div class="card">2️⃣ Receive your unique donation page</div>
-  <div class="card">3️⃣ Share the link and start collecting donations</div>
+  <div class="card">2️⃣ Get your unique donation link</div>
+  <div class="card">3️⃣ Share it and start collecting donations</div>
 </section>
 
 <section id="pricing">
   <h2>Pricing</h2>
-  <div class="card"><strong>Free:</strong> Basic donation widget</div>
+  <div class="card"><strong>Free:</strong> Basic donation button</div>
   <div class="card"><strong>Starter (£9/mo):</strong> Hosted page + analytics</div>
-  <div class="card"><strong>Pro (£19/mo):</strong> Full CRM + embed tools</div>
+  <div class="card"><strong>Pro (£19/mo):</strong> Full embed + CRM tools</div>
   <p><a href="#" class="button">Start with Stripe (coming soon)</a></p>
 </section>
 
-<section>
+<section id="crypto">
   <h2>Accept Crypto</h2>
   <p>Send ETH or stablecoin donations to this wallet:</p>
   <div class="wallet">0xc324a0eFacd435E3D0057B4295F6b727D03BeA73</div>
@@ -122,10 +134,15 @@
 
 <section id="signup">
   <h2>Sign Up</h2>
-  <form action="https://formspree.io/f/your-form-id" method="POST">
-    <p><label>Church / Org Name:<br><input type="text" name="org" required style="width:100%;padding:10px;"></label></p>
-    <p><label>Email Address:<br><input type="email" name="email" required style="width:100%;padding:10px;"></label></p>
-    <p><button class="button" type="submit">Submit</button></p>
+  <form action="https://formspree.io/f/mnnvlgye" method="POST">
+    <input type="hidden" name="_subject" value="New TitheHub Signup!">
+    <label>Church / Org Name:<br>
+      <input type="text" name="org" required>
+    </label>
+    <label>Email Address:<br>
+      <input type="email" name="email" required>
+    </label>
+    <button class="button" type="submit">Submit</button>
   </form>
 </section>
 
@@ -135,8 +152,3 @@
 
 </body>
 </html>
-
-
-    
-
- 
