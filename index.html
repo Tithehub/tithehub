@@ -6,105 +6,127 @@
   <title>TitheHub – Accept Tithes with Crypto & Card</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --gold1: #f2c94c;
+      --gold2: #f2994a;
+      --bg: #fefbf6;
+      --text: #333;
+    }
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: #fefbf6;
-      color: #333;
-      scroll-behavior: smooth;
+      background: var(--bg);
+      color: var(--text);
     }
     header {
-      background: linear-gradient(135deg, #f2c94c, #f2994a);
+      background: linear-gradient(135deg, var(--gold1), var(--gold2));
       color: white;
       text-align: center;
-      padding: 80px 20px 60px;
+      padding: 100px 20px 60px;
+      border-bottom-left-radius: 60px;
     }
     header img {
-      width: 70px;
+      width: 80px;
       margin-bottom: 15px;
+      filter: drop-shadow(0 0 5px #fff8);
     }
     header h1 {
-      margin: 0;
       font-size: 3em;
-      font-weight: 600;
+      margin: 0;
     }
     header p {
-      font-size: 1.2em;
+      font-size: 1.3em;
+      margin-top: 10px;
       opacity: 0.95;
     }
     nav {
       background: white;
-      padding: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 15px 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 99;
     }
     nav a {
-      margin: 0 15px;
+      margin: 0 20px;
       color: #444;
       text-decoration: none;
       font-weight: 600;
     }
     section {
-      max-width: 960px;
+      max-width: 1000px;
       margin: 60px auto;
       padding: 0 20px;
     }
     h2 {
       text-align: center;
-      font-size: 2em;
-      margin-bottom: 30px;
+      font-size: 2.5em;
+      margin-bottom: 40px;
     }
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      gap: 30px;
     }
     .card {
       background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.04);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
       text-align: center;
     }
     .card strong {
       display: block;
-      margin-bottom: 8px;
-      font-size: 1.1em;
+      font-size: 1.2em;
+      margin-bottom: 10px;
     }
     .button {
-      background: #f2994a;
+      background: linear-gradient(135deg, var(--gold2), var(--gold1));
       color: white;
       padding: 12px 24px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-weight: bold;
       text-decoration: none;
       display: inline-block;
       margin: 10px 5px 0 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .scripture {
+      background: #fff9e5;
+      padding: 50px 30px;
+      border-radius: 30px;
+      text-align: center;
+      font-style: italic;
+      font-size: 1.3em;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+    .cta {
+      background: linear-gradient(135deg, var(--gold1), var(--gold2));
+      color: white;
+      padding: 60px 30px;
+      border-radius: 40px;
+      text-align: center;
+      margin: 60px auto;
     }
     iframe {
       border: none;
       width: 100%;
       height: 800px;
-      border-radius: 12px;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #777;
-      padding: 40px 20px;
-      background: #fff8e5;
+      border-radius: 20px;
     }
     .btc-section {
       text-align: center;
       background: white;
       padding: 40px;
-      border-radius: 10px;
-      max-width: 600px;
-      margin: 40px auto;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      max-width: 700px;
+      margin: 60px auto;
     }
     .btc-address {
       font-family: monospace;
@@ -114,6 +136,13 @@
       display: inline-block;
       margin-top: 10px;
     }
+    footer {
+      background: #fff8e5;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9em;
+      color: #666;
+    }
   </style>
 </head>
 <body>
@@ -121,7 +150,7 @@
 <header>
   <img src="https://tithehub.github.io/tithehub/gold-cross-logo.png" alt="TitheHub Logo">
   <h1>TitheHub</h1>
-  <p>Launch your crypto & card donation page in 60 seconds.</p>
+  <p>Build your donation page in 60 seconds. Accept crypto & card.</p>
 </header>
 
 <nav>
@@ -131,11 +160,11 @@
 </nav>
 
 <section id="features">
-  <h2>Why Churches Love TitheHub</h2>
+  <h2>Why Churches Choose Us</h2>
   <div class="features">
-    <div class="card"><strong>✅ Accept Crypto & Card</strong> BTC, ETH, USDT, Stripe</div>
-    <div class="card"><strong>⚡ Instant Setup</strong> Hosted page or embed in 1 click</div>
-    <div class="card"><strong>📊 No Maintenance</strong> No devs, no code, no updates</div>
+    <div class="card"><strong>💳 Crypto + Stripe</strong> Accept BTC, ETH, USDT, and Card</div>
+    <div class="card"><strong>⚡ Instant Setup</strong> Hosted or embeddable in 1 click</div>
+    <div class="card"><strong>🛠️ No Maintenance</strong> We handle the tech, you focus on mission</div>
   </div>
 </section>
 
@@ -146,4 +175,40 @@
       <strong>Starter</strong><br>
       £9/month or £81/year<br><br>
       <a href="https://buy.stripe.com/14A14oenz6Fddgk3SNbfO02" class="button" target="_blank">Monthly</a>
-      <a href="https://buy.stripe.com
+      <a href="https://buy.stripe.com/4gMeVe0wJaVt1xCdtnbfO01" class="button" target="_blank">Annual (Save 25%)</a>
+    </div>
+    <div class="card">
+      <strong>Pro</strong><br>
+      £19/month or £171/year<br><br>
+      <a href="https://buy.stripe.com/28E8wQdjvfbJekogFzbfO03" class="button" target="_blank">Monthly</a>
+      <a href="https://buy.stripe.com/00w4gAbbn3t13FKgFzbfO00" class="button" target="_blank">Annual (Save 25%)</a>
+    </div>
+  </div>
+</section>
+
+<section class="scripture">
+  “Bring the whole tithe into the storehouse... Test me in this,” says the Lord Almighty, “and see if I will not throw open the floodgates of heaven.”<br>
+  <strong>– Malachi 3:10</strong>
+</section>
+
+<section id="signup">
+  <div class="cta">
+    <h2>Start Accepting Donations Today</h2>
+    <p>Your free hosted donation page is one form away.</p>
+  </div>
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfMs1jnlYxpfrZQ20lHIF9NfsydOod9j1m4GyYkG_d0yDrNZA/viewform?embedded=true">Loading…</iframe>
+</section>
+
+<section class="btc-section">
+  <h2>Support the TitheHub Mission</h2>
+  <p>If you’d like to support us, consider a BTC donation:</p>
+  <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=bitcoin:37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5" alt="BTC QR Code">
+  <div class="btc-address">37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5</div>
+</section>
+
+<footer>
+  <p>&copy; 2025 TitheHub. Built with love for communities. | <a href="https://x.com/tithehub">@tithehub</a></p>
+</footer>
+
+</body>
+</html>
