@@ -1,214 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TitheHub – Accept Tithes with Crypto & Card</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>TitheHub – Accept Tithes & Donations</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --gold1: #f2c94c;
-      --gold2: #f2994a;
-      --bg: #fefbf6;
-      --text: #333;
-    }
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-    header {
-      background: linear-gradient(135deg, var(--gold1), var(--gold2));
-      color: white;
-      text-align: center;
-      padding: 100px 20px 60px;
-      border-bottom-left-radius: 60px;
-    }
-    header img {
-      width: 80px;
-      margin-bottom: 15px;
-      filter: drop-shadow(0 0 5px #fff8);
-    }
-    header h1 {
-      font-size: 3em;
-      margin: 0;
-    }
-    header p {
-      font-size: 1.3em;
-      margin-top: 10px;
-      opacity: 0.95;
-    }
-    nav {
-      background: white;
-      padding: 15px 20px;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 99;
-    }
-    nav a {
-      margin: 0 20px;
-      color: #444;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    section {
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
-    h2 {
-      text-align: center;
-      font-size: 2.5em;
-      margin-bottom: 40px;
-    }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-    .card {
-      background: white;
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-      text-align: center;
-    }
-    .card strong {
-      display: block;
-      font-size: 1.2em;
-      margin-bottom: 10px;
-    }
-    .button {
-      background: linear-gradient(135deg, var(--gold2), var(--gold1));
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 10px;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-      margin: 10px 5px 0 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .scripture {
-      background: #fff9e5;
-      padding: 50px 30px;
-      border-radius: 30px;
-      text-align: center;
-      font-style: italic;
-      font-size: 1.3em;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    }
-    .cta {
-      background: linear-gradient(135deg, var(--gold1), var(--gold2));
-      color: white;
-      padding: 60px 30px;
-      border-radius: 40px;
-      text-align: center;
-      margin: 60px auto;
-    }
-    iframe {
-      border: none;
-      width: 100%;
-      height: 800px;
-      border-radius: 20px;
-    }
-    .btc-section {
-      text-align: center;
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-      max-width: 700px;
-      margin: 60px auto;
-    }
-    .btc-address {
-      font-family: monospace;
-      background: #f1f1f1;
-      padding: 10px;
-      border-radius: 5px;
-      display: inline-block;
-      margin-top: 10px;
-    }
-    footer {
-      background: #fff8e5;
-      text-align: center;
-      padding: 40px 20px;
-      font-size: 0.9em;
-      color: #666;
-    }
+    body { font-family: 'Inter', sans-serif; }
   </style>
 </head>
-<body>
+<body class="bg-white text-gray-800">
 
-<header>
-  <img src="https://tithehub.github.io/tithehub/gold-cross-logo.png" alt="TitheHub Logo">
-  <h1>TitheHub</h1>
-  <p>Build your donation page in 60 seconds. Accept crypto & card.</p>
-</header>
-
-<nav>
-  <a href="#features">Features</a>
-  <a href="#pricing">Pricing</a>
-  <a href="#signup">Sign Up</a>
-</nav>
-
-<section id="features">
-  <h2>Why Churches Choose Us</h2>
-  <div class="features">
-    <div class="card"><strong>💳 Crypto + Stripe</strong> Accept BTC, ETH, USDT, and Card</div>
-    <div class="card"><strong>⚡ Instant Setup</strong> Hosted or embeddable in 1 click</div>
-    <div class="card"><strong>🛠️ No Maintenance</strong> We handle the tech, you focus on mission</div>
-  </div>
-</section>
-
-<section id="pricing">
-  <h2>Simple Pricing</h2>
-  <div class="features">
-    <div class="card">
-      <strong>Starter</strong><br>
-      £9/month or £81/year<br><br>
-      <a href="https://buy.stripe.com/14A14oenz6Fddgk3SNbfO02" class="button" target="_blank">Monthly</a>
-      <a href="https://buy.stripe.com/4gMeVe0wJaVt1xCdtnbfO01" class="button" target="_blank">Annual (Save 25%)</a>
+  <!-- Header -->
+  <header class="relative bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 text-white py-24 px-6 overflow-hidden rounded-b-3xl shadow-xl">
+    <div class="max-w-7xl mx-auto text-center relative z-10">
+      <img src="https://tithehub.github.io/tithehub/gold-cross-logo.png" alt="TitheHub Logo" class="mx-auto w-12 mb-4">
+      <h1 class="text-4xl md:text-5xl font-bold">Accept Tithes & Donations with Crypto or Card</h1>
+      <p class="mt-4 text-lg">An all-in-one platform for churches.</p>
+      <a href="#signup" class="mt-6 inline-block bg-white text-yellow-500 font-bold py-3 px-6 rounded-lg shadow hover:scale-105 transition">Get Started</a>
     </div>
-    <div class="card">
-      <strong>Pro</strong><br>
-      £19/month or £171/year<br><br>
-      <a href="https://buy.stripe.com/28E8wQdjvfbJekogFzbfO03" class="button" target="_blank">Monthly</a>
-      <a href="https://buy.stripe.com/00w4gAbbn3t13FKgFzbfO00" class="button" target="_blank">Annual (Save 25%)</a>
+    <img src="https://tithehub.github.io/tithehub/cross-coin-3d.png" alt="Coin" class="absolute top-4 right-6 w-20 opacity-30 rotate-12">
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow text-sm font-semibold py-3 px-6 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <span class="text-yellow-600">TitheHub</span>
+      <div class="space-x-6">
+        <a href="#features" class="hover:text-yellow-600">Features</a>
+        <a href="#pricing" class="hover:text-yellow-600">Pricing</a>
+        <a href="#signup" class="hover:text-yellow-600">Sign Up</a>
+      </div>
     </div>
-  </div>
-</section>
+  </nav>
 
-<section class="scripture">
-  “Bring the whole tithe into the storehouse... Test me in this,” says the Lord Almighty, “and see if I will not throw open the floodgates of heaven.”<br>
-  <strong>– Malachi 3:10</strong>
-</section>
+  <!-- Features -->
+  <section id="features" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto text-center px-4">
+      <h2 class="text-3xl font-bold mb-12">Features</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div>
+          <img src="https://cdn-icons-png.flaticon.com/512/825/825519.png" class="w-12 mx-auto mb-4">
+          <h3 class="font-semibold text-lg">Accept Bitcoin, Ethereum, and USDC</h3>
+        </div>
+        <div>
+          <img src="https://cdn-icons-png.flaticon.com/512/3488/3488464.png" class="w-12 mx-auto mb-4">
+          <h3 class="font-semibold text-lg">Recurring donations via Stripe</h3>
+        </div>
+        <div>
+          <img src="https://cdn-icons-png.flaticon.com/512/535/535234.png" class="w-12 mx-auto mb-4">
+          <h3 class="font-semibold text-lg">Hosted donation pages or widgets</h3>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="signup">
-  <div class="cta">
-    <h2>Start Accepting Donations Today</h2>
-    <p>Your free hosted donation page is one form away.</p>
-  </div>
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfMs1jnlYxpfrZQ20lHIF9NfsydOod9j1m4GyYkG_d0yDrNZA/viewform?embedded=true">Loading…</iframe>
-</section>
+  <!-- Pricing -->
+  <section id="pricing" class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto text-center px-4">
+      <h2 class="text-3xl font-bold mb-12">Pricing</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-yellow-50 border border-yellow-300 rounded-xl p-8 shadow-md">
+          <h3 class="text-xl font-semibold mb-2">Starter</h3>
+          <p class="text-3xl font-bold mb-2">$9<span class="text-sm font-normal">/month</span></p>
+          <ul class="text-left text-sm list-disc list-inside mb-4">
+            <li>Hosted donation page</li>
+          </ul>
+          <a href="#signup" class="inline-block bg-yellow-500 text-white py-2 px-4 rounded shadow hover:bg-yellow-600">Choose Plan</a>
+        </div>
+        <div class="bg-white border border-yellow-500 rounded-xl p-8 shadow-lg">
+          <h3 class="text-xl font-semibold mb-2">Pro</h3>
+          <p class="text-3xl font-bold mb-2">$19<span class="text-sm font-normal">/month</span></p>
+          <ul class="text-left text-sm list-disc list-inside mb-4">
+            <li>Full donation page</li>
+            <li>CRM tools + recurring tracking</li>
+          </ul>
+          <a href="#signup" class="inline-block bg-yellow-500 text-white py-2 px-4 rounded shadow hover:bg-yellow-600">Choose Plan</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="btc-section">
-  <h2>Support the TitheHub Mission</h2>
-  <p>If you’d like to support us, consider a BTC donation:</p>
-  <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=bitcoin:37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5" alt="BTC QR Code">
-  <div class="btc-address">37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5</div>
-</section>
+  <!-- Sign Up -->
+  <section id="signup" class="py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto text-center px-4">
+      <h2 class="text-3xl font-bold mb-6">Sign Up to Get Your Donation Page</h2>
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfMs1jnlYxpfrZQ20lHIF9NfsydOod9j1m4GyYkG_d0yDrNZA/viewform?embedded=true"
+        width="100%" height="800" class="rounded-xl border-2 border-yellow-200"
+        frameborder="0" marginheight="0" marginwidth="0">
+        Loading…
+      </iframe>
+    </div>
+  </section>
 
-<footer>
-  <p>&copy; 2025 TitheHub. Built with love for communities. | <a href="https://x.com/tithehub">@tithehub</a></p>
-</footer>
+  <!-- Footer -->
+  <footer class="bg-white border-t py-10 text-center text-sm text-gray-600">
+    <p>&copy; 2025 TitheHub. Built for churches & communities. | <a href="https://x.com/tithehub" class="text-yellow-600">@tithehub</a></p>
+  </footer>
 
 </body>
 </html>
