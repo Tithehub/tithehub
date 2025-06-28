@@ -3,24 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TitheHub – Accept Crypto & Card Donations</title>
+  <title>TitheHub – Accept Tithes with Crypto & Card</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: #f9f9f9;
+      background: linear-gradient(to bottom right, #fffdf6, #fef9ec);
       color: #333;
+      scroll-behavior: smooth;
     }
     header {
       background: linear-gradient(135deg, #f2c94c, #f2994a);
       color: white;
       text-align: center;
       padding: 60px 20px;
+      position: relative;
     }
     header img {
-      width: 60px;
+      width: 70px;
       margin-bottom: 10px;
+      animation: fadeInDown 1s ease-out;
     }
     header h1 {
       margin: 0 0 10px;
@@ -39,47 +42,63 @@
       color: #333;
       text-decoration: none;
       font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #f2994a;
     }
     section {
-      max-width: 800px;
-      margin: 40px auto;
+      max-width: 900px;
+      margin: 60px auto;
       padding: 20px;
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-    h2 {
-      margin-top: 0;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      animation: fadeInUp 1s ease-out;
     }
     .card {
       padding: 15px;
       border: 1px solid #eee;
       border-radius: 8px;
       margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
     }
     .button {
       background: #f2994a;
       color: white;
       padding: 12px 25px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       font-weight: bold;
       text-decoration: none;
       display: inline-block;
+      transition: background 0.3s ease;
     }
-    .wallet {
-      font-family: monospace;
-      background: #f1f1f1;
-      padding: 8px;
-      border-radius: 4px;
-      display: inline-block;
-      word-break: break-all;
+    .button:hover {
+      background: #e88c3c;
     }
     footer {
       text-align: center;
       font-size: 0.9em;
       color: #777;
       padding: 40px 20px;
+    }
+    blockquote {
+      font-style: italic;
+      color: #555;
+      text-align: center;
+      margin: 40px auto;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -88,37 +107,47 @@
 <header>
   <img src="https://tithehub.github.io/tithehub/gold-cross-logo.png" alt="TitheHub Logo" />
   <h1>TitheHub</h1>
-  <p>Accept Tithes & Donations with Crypto or Stripe</p>
+  <p>The simplest way for churches and nonprofits to accept tithes and donations online.</p>
 </header>
 
 <nav>
   <a href="#features">Features</a>
+  <a href="#how">How It Works</a>
   <a href="#pricing">Pricing</a>
   <a href="#signup">Sign Up</a>
 </nav>
 
 <section id="features">
-  <h2>Features</h2>
-  <div class="card">✅ Accept Bitcoin, Ethereum, and USDC</div>
-  <div class="card">✅ Recurring donations via Stripe</div>
-  <div class="card">✅ Hosted donation pages or widgets</div>
+  <h2>Why Choose TitheHub?</h2>
+  <div class="card">💳 Accept tithes in crypto, card or bank transfer — no setup fees</div>
+  <div class="card">⚡ Launch your donation page in 60 seconds</div>
+  <div class="card">🔗 Embed a donation button with just one line of code</div>
+</section>
+
+<section id="how">
+  <h2>How It Works</h2>
+  <div class="card">1️⃣ Fill out the signup form</div>
+  <div class="card">2️⃣ We generate your page + widget</div>
+  <div class="card">3️⃣ Start collecting donations instantly</div>
 </section>
 
 <section id="pricing">
-  <h2>Pricing</h2>
-  <div class="card"><strong>Free:</strong> Basic donation button</div>
-  <div class="card"><strong>Starter (£9/mo):</strong> Hosted page + analytics</div>
-  <div class="card"><strong>Pro (£19/mo):</strong> Full embed + CRM tools</div>
-  <p><a href="#" class="button">Start with Stripe (coming soon)</a></p>
+  <h2>Simple Pricing</h2>
+  <div class="card"><strong>Free:</strong> Get a hosted donation page + widget</div>
+  <div class="card"><strong>Starter (£9/mo):</strong> Analytics + branding</div>
+  <div class="card"><strong>Pro (£19/mo):</strong> CRM tools + recurring donations</div>
 </section>
 
-<section id="signup" style="padding: 40px; text-align: center;">
-  <h2>Sign Up to Get Your Donation Page</h2>
-  <iframe 
-    src="https://docs.google.com/forms/d/e/1FAIpQLSfMs1jnlYxpfrZQ20lHIF9NfsydOod9j1m4GyYkG_d0yDrNZA/viewform?embedded=true" 
-    width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" style="border-radius: 12px; max-width: 800px;">
-    Loading…
-  </iframe>
+<section id="signup" style="text-align: center;">
+  <h2>Get Your Free Donation Page</h2>
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfMs1jnlYxpfrZQ20lHIF9NfsydOod9j1m4GyYkG_d0yDrNZA/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" style="border-radius: 12px; max-width: 800px;">Loading…</iframe>
+</section>
+
+<section>
+  <blockquote>
+    “Bring the whole tithe into the storehouse... Test me in this,” says the Lord Almighty, “and see if I will not throw open the floodgates of heaven...”<br>
+    <strong>– Malachi 3:10</strong>
+  </blockquote>
 </section>
 
 <footer>
