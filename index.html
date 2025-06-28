@@ -9,7 +9,7 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(to bottom right, #fffdf6, #fef9ec);
+      background: #fefbf6;
       color: #333;
       scroll-behavior: smooth;
     }
@@ -17,85 +17,94 @@
       background: linear-gradient(135deg, #f2c94c, #f2994a);
       color: white;
       text-align: center;
-      padding: 60px 20px;
-      position: relative;
+      padding: 80px 20px 60px;
     }
     header img {
       width: 70px;
-      margin-bottom: 10px;
-      animation: fadeInDown 1s ease-out;
+      margin-bottom: 15px;
     }
     header h1 {
-      margin: 0 0 10px;
+      margin: 0;
       font-size: 3em;
+      font-weight: 600;
     }
     header p {
-      margin: 0;
       font-size: 1.2em;
+      opacity: 0.95;
     }
     nav {
-      text-align: center;
-      margin-top: 20px;
+      background: white;
+      padding: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     nav a {
       margin: 0 15px;
-      color: #333;
+      color: #444;
       text-decoration: none;
       font-weight: 600;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: #f2994a;
     }
     section {
-      max-width: 900px;
+      max-width: 960px;
       margin: 60px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-      animation: fadeInUp 1s ease-out;
+      padding: 0 20px;
+    }
+    h2 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 30px;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
     .card {
-      padding: 15px;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      transition: transform 0.3s ease;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.04);
+      text-align: center;
     }
-    .card:hover {
-      transform: translateY(-4px);
+    .card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.1em;
     }
     .button {
       background: #f2994a;
       color: white;
-      padding: 12px 20px;
+      padding: 12px 24px;
       border: none;
       border-radius: 8px;
       font-weight: bold;
       text-decoration: none;
       display: inline-block;
-      transition: background 0.3s ease;
-      margin: 5px 5px 0 0;
+      margin: 10px 5px 0 0;
     }
-    .button:hover {
-      background: #e88c3c;
+    iframe {
+      border: none;
+      width: 100%;
+      height: 800px;
+      border-radius: 12px;
     }
     footer {
       text-align: center;
       font-size: 0.9em;
       color: #777;
       padding: 40px 20px;
+      background: #fff8e5;
     }
-    blockquote {
-      font-style: italic;
-      color: #555;
+    .btc-section {
       text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      max-width: 600px;
       margin: 40px auto;
-    }
-    .btc-box {
-      text-align: center;
-      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
     .btc-address {
       font-family: monospace;
@@ -105,83 +114,36 @@
       display: inline-block;
       margin-top: 10px;
     }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
 
 <header>
-  <img src="https://tithehub.github.io/tithehub/gold-cross-logo.png" alt="TitheHub Logo" />
+  <img src="https://tithehub.github.io/tithehub/gold-cross-logo.png" alt="TitheHub Logo">
   <h1>TitheHub</h1>
-  <p>The simplest way for churches and nonprofits to accept tithes and donations online.</p>
+  <p>Launch your crypto & card donation page in 60 seconds.</p>
 </header>
 
 <nav>
   <a href="#features">Features</a>
-  <a href="#how">How It Works</a>
   <a href="#pricing">Pricing</a>
   <a href="#signup">Sign Up</a>
 </nav>
 
 <section id="features">
-  <h2>Why Choose TitheHub?</h2>
-  <div class="card">💳 Accept tithes in crypto, card or bank transfer — no setup fees</div>
-  <div class="card">⚡ Launch your donation page in 60 seconds</div>
-  <div class="card">🔗 Embed a donation button with just one line of code</div>
-</section>
-
-<section id="how">
-  <h2>How It Works</h2>
-  <div class="card">1️⃣ Fill out the signup form</div>
-  <div class="card">2️⃣ We generate your page + widget</div>
-  <div class="card">3️⃣ Start collecting donations instantly</div>
+  <h2>Why Churches Love TitheHub</h2>
+  <div class="features">
+    <div class="card"><strong>✅ Accept Crypto & Card</strong> BTC, ETH, USDT, Stripe</div>
+    <div class="card"><strong>⚡ Instant Setup</strong> Hosted page or embed in 1 click</div>
+    <div class="card"><strong>📊 No Maintenance</strong> No devs, no code, no updates</div>
+  </div>
 </section>
 
 <section id="pricing">
   <h2>Simple Pricing</h2>
-  <div class="card">
-    <strong>Starter</strong><br>
-    £9/month or £81/year<br>
-    <a href="https://buy.stripe.com/14A14oenz6Fddgk3SNbfO02" class="button" target="_blank">Monthly</a>
-    <a href="https://buy.stripe.com/4gMeVe0wJaVt1xCdtnbfO01" class="button" target="_blank">Annual (Save 25%)</a>
-  </div>
-  <div class="card">
-    <strong>Pro</strong><br>
-    £19/month or £171/year<br>
-    <a href="https://buy.stripe.com/28E8wQdjvfbJekogFzbfO03" class="button" target="_blank">Monthly</a>
-    <a href="https://buy.stripe.com/00w4gAbbn3t13FKgFzbfO00" class="button" target="_blank">Annual (Save 25%)</a>
-  </div>
-</section>
-
-<section id="signup" style="text-align: center;">
-  <h2>Get Your Free Donation Page</h2>
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfMs1jnlYxpfrZQ20lHIF9NfsydOod9j1m4GyYkG_d0yDrNZA/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" style="border-radius: 12px; max-width: 800px;">Loading…</iframe>
-</section>
-
-<section class="btc-box">
-  <h2>Support the TitheHub Mission</h2>
-  <p>You can donate directly to our Bitcoin address to help support the growth of this platform:</p>
-  <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=bitcoin:37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5" alt="BTC QR Code" />
-  <div class="btc-address">37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5</div>
-</section>
-
-<section>
-  <blockquote>
-    “Bring the whole tithe into the storehouse... Test me in this,” says the Lord Almighty, “and see if I will not throw open the floodgates of heaven...”<br>
-    <strong>– Malachi 3:10</strong>
-  </blockquote>
-</section>
-
-<footer>
-  <p>&copy; 2025 TitheHub. Built with love for communities. | Powered by GitHub Pages</p>
-</footer>
-
-</body>
-</html>
+  <div class="features">
+    <div class="card">
+      <strong>Starter</strong><br>
+      £9/month or £81/year<br><br>
+      <a href="https://buy.stripe.com/14A14oenz6Fddgk3SNbfO02" class="button" target="_blank">Monthly</a>
+      <a href="https://buy.stripe.com
