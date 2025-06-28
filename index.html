@@ -1,3 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TitheHub – Accept Crypto & Card Donations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #f2c94c, #f2994a);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 3em;
+    }
+    header p {
+      margin: 0;
+      font-size: 1.2em;
+    }
+    nav {
+      text-align: center;
+      margin-top: 20px;
+    }
+    nav a {
+      margin: 0 15px;
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    section {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    h2 {
+      margin-top: 0;
+    }
+    .card {
+      padding: 15px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .button {
+      background: #f2994a;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .wallet {
+      font-family: monospace;
+      background: #f1f1f1;
+      padding: 8px;
+      border-radius: 4px;
+      display: inline-block;
+      word-break: break-all;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #777;
+      padding: 40px 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>TitheHub</h1>
+  <p>Accept Tithes & Donations with Crypto or Stripe</p>
+</header>
+
+<nav>
+  <a href="#features">Features</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#signup">Sign Up</a>
+</nav>
+
+<section id="features">
+  <h2>Features</h2>
+  <div class="card">✅ Accept Bitcoin, Ethereum, USDC</div>
+  <div class="card">✅ Recurring fiat donations via Stripe</div>
+  <div class="card">✅ Hosted donation pages or widgets</div>
+</section>
+
+<section id="how">
+  <h2>How It Works</h2>
+  <div class="card">1️⃣ Sign up using the form below</div>
+  <div class="card">2️⃣ Receive your unique donation page</div>
+  <div class="card">3️⃣ Share the link and start collecting donations</div>
+</section>
+
+<section id="pricing">
+  <h2>Pricing</h2>
+  <div class="card"><strong>Free:</strong> Basic donation widget</div>
+  <div class="card"><strong>Starter (£9/mo):</strong> Hosted page + analytics</div>
+  <div class="card"><strong>Pro (£19/mo):</strong> Full CRM + embed tools</div>
+  <p><a href="#" class="button">Start with Stripe (coming soon)</a></p>
+</section>
+
+<section>
+  <h2>Accept Crypto</h2>
+  <p>Send ETH or stablecoin donations to this wallet:</p>
+  <div class="wallet">0xc324a0eFacd435E3D0057B4295F6b727D03BeA73</div>
+</section>
+
+<section id="signup">
+  <h2>Sign Up</h2>
+  <form action="https://formspree.io/f/your-form-id" method="POST">
+    <p><label>Church / Org Name:<br><input type="text" name="org" required style="width:100%;padding:10px;"></label></p>
+    <p><label>Email Address:<br><input type="email" name="email" required style="width:100%;padding:10px;"></label></p>
+    <p><button class="button" type="submit">Submit</button></p>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2025 TitheHub. Built with love for communities. | Powered by GitHub Pages</p>
+</footer>
+
+</body>
+</html>
 
 
     
