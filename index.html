@@ -69,19 +69,7 @@
       padding: 8px;
       border-radius: 4px;
       display: inline-block;
-      word-break: break-word;
-    }
-    input, button {
-      font-family: inherit;
-      font-size: 1em;
-    }
-    input {
-      padding: 10px;
-      width: 100%;
-      margin-top: 5px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      word-break: break-all;
     }
     footer {
       text-align: center;
@@ -111,13 +99,6 @@
   <div class="card">✅ Hosted donation pages or widgets</div>
 </section>
 
-<section id="how">
-  <h2>How It Works</h2>
-  <div class="card">1️⃣ Sign up using the form below</div>
-  <div class="card">2️⃣ Get your unique donation link</div>
-  <div class="card">3️⃣ Share it and start collecting donations</div>
-</section>
-
 <section id="pricing">
   <h2>Pricing</h2>
   <div class="card"><strong>Free:</strong> Basic donation button</div>
@@ -126,24 +107,13 @@
   <p><a href="#" class="button">Start with Stripe (coming soon)</a></p>
 </section>
 
-<section id="crypto">
-  <h2>Accept Crypto</h2>
-  <p>Send ETH or stablecoin donations to this wallet:</p>
-  <div class="wallet">0xc324a0eFacd435E3D0057B4295F6b727D03BeA73</div>
-</section>
-
-<section id="signup">
-  <h2>Sign Up</h2>
-  <form action="https://formspree.io/f/mnnvlgye" method="POST">
-    <input type="hidden" name="_subject" value="New TitheHub Signup!">
-    <label>Church / Org Name:<br>
-      <input type="text" name="org" required>
-    </label>
-    <label>Email Address:<br>
-      <input type="email" name="email" required>
-    </label>
-    <button class="button" type="submit">Submit</button>
-  </form>
+<section id="signup" style="padding: 40px; text-align: center;">
+  <h2>Sign Up to Get Your Donation Page</h2>
+  <iframe 
+    src="https://docs.google.com/forms/d/e/1FAIpQLSfMs1jnlYxpfrZQ20lHIF9NfsydOod9j1m4GyYkG_d0yDrNZA/viewform?embedded=true" 
+    width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" style="border-radius: 12px; max-width: 800px;">
+    Loading…
+  </iframe>
 </section>
 
 <footer>
