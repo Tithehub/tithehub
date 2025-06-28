@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TitheHub – Accept Crypto & Card Donations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; background: #f6f6f6; color: #111; }
+    .container { max-width: 800px; margin: auto; padding: 20px; }
+    header { text-align: center; padding: 40px 20px; background: #fff; }
+    header h1 { margin: 0; font-size: 2.5em; }
+    .button { display: inline-block; background: black; color: white; padding: 12px 20px; text-decoration: none; margin-top: 20px; }
+    section { background: white; margin-top: 20px; padding: 20px; border-radius: 8px; }
+    footer { text-align: center; padding: 20px; font-size: 0.9em; color: #666; }
+    .card { margin-bottom: 15px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+    code { background: #eee; padding: 2px 4px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>TitheHub</h1>
+    <p>Accept Tithes & Donations via Crypto or Stripe</p>
+    <a class="button" href="#pricing">Get Started</a>
+  </header>
+
+  <section>
+    <h2>How It Works</h2>
+    <div class="card">1. Sign up using the form below</div>
+    <div class="card">2. Get your donation page link</div>
+    <div class="card">3. Share it and receive donations instantly</div>
+  </section>
+
+  <section id="pricing">
+    <h2>Pricing</h2>
+    <div class="card"><strong>Free:</strong> Basic donation widget</div>
+    <div class="card"><strong>Starter (£9/mo):</strong> Hosted page + analytics</div>
+    <div class="card"><strong>Pro (£19/mo):</strong> Full embed tools + CRM</div>
+    <p><a class="button" href="#">Pay via Stripe (Coming Soon)</a></p>
+  </section>
+
+  <section>
+    <h2>Accept Crypto</h2>
+    <p>Send donations to our Ethereum wallet:</p>
+    <code>0xc324a0eFacd435E3D0057B4295F6b727D03BeA73</code>
+  </section>
+
+  <section>
+    <h2>Sign Up</h2>
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <p><label>Church or Org Name:<br><input type="text" name="org" required></label></p>
+      <p><label>Email Address:<br><input type="email" name="email" required></label></p>
+      <button class="button" type="submit">Submit</button>
+    </form>
+    <small>(We'll send you setup instructions)</small>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 TitheHub. All rights reserved.</p>
+  </footer>
+</div>
+
+</body>
+</html>
