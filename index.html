@@ -56,10 +56,8 @@
       max-width: 400px;
       border-radius: var(--radius);
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
+    h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    h2 { font-size: 2rem; margin-top: 2rem; }
     p { font-size: 1.1rem; }
     .btn-primary, .btn-secondary {
       display: inline-block;
@@ -83,6 +81,25 @@
     .btn-primary:hover, .btn-secondary:hover {
       transform: scale(1.02);
       box-shadow: var(--hover-shadow);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      transition: transform 0.3s ease;
+    }
+    .card:hover { transform: scale(1.02); }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: var(--radius);
     }
     footer {
       text-align: center;
@@ -114,14 +131,69 @@
     <img src="./gold-cross-logo.png" alt="TitheHub Illustration" />
   </section>
 
+  <section id="mission" class="container">
+    <h2>Our Mission</h2>
+    <p>TitheHub empowers churches, nonprofits, and community causes to receive modern donations — by card or crypto — with zero technical setup. Our platform automates your giving process with embeddable widgets, hosted pages, and referral rewards.</p>
+  </section>
+
+  <section id="features" class="container">
+    <h2>How It Works</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>1. Create Your Page</h3>
+        <p>Fill out our short form to generate your hosted donation page and widget instantly.</p>
+      </div>
+      <div class="card">
+        <h3>2. Share the Link or Widget</h3>
+        <p>Embed the widget in your site or share your hosted donation page anywhere.</p>
+      </div>
+      <div class="card">
+        <h3>3. Accept Donations</h3>
+        <p>Receive donations via card or crypto and track them through your dashboard.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="container">
+    <h2>Pricing Plans</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Free</h3>
+        <p>£0/mo – Manual setup, basic support</p>
+      </div>
+      <div class="card">
+        <h3>Starter</h3>
+        <p>£9/mo – Hosted page, widget, email alerts</p>
+        <a href="https://buy.stripe.com/test-starter" class="btn-secondary">Subscribe</a>
+      </div>
+      <div class="card">
+        <h3>Pro</h3>
+        <p>£29/mo – Custom domain, referral earnings, analytics</p>
+        <a href="https://buy.stripe.com/test-pro" class="btn-primary">Subscribe</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="signup" class="container">
+    <h2>Sign Up to Get Started</h2>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfMs1jnlYxpfrZQ20lHIF9NfsydOod9j1m4GyYkG_d0yDrNZA/viewform?embedded=true">Loading…</iframe>
+  </section>
+
+  <section id="referral" class="container">
+    <h2>Referral Program</h2>
+    <p>Earn 10% of every subscription you refer — for life. Invite your network and start earning today.</p>
+    <a href="https://forms.gle/example" class="btn-primary">Join Referral Program</a>
+  </section>
+
   <section id="chatgpt" class="container">
     <h2>Talk to TitheHub AI</h2>
-    <p>Ask questions about setup, donations, referrals, or how to earn. Powered by ChatGPT.</p>
+    <p>Have a question about donations, setup, or pricing? Ask our AI assistant powered by ChatGPT.</p>
     <a href="https://chat.openai.com/" target="_blank" class="btn-secondary">Open ChatGPT</a>
   </section>
 
   <footer>
-    © TitheHub 2025 | BTC: 37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5
+    © TitheHub 2025 | <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Contact</a><br />
+    BTC: 37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5
   </footer>
 </body>
 </html>
