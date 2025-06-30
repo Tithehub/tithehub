@@ -2,172 +2,256 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TitheHub – Accept Crypto & Card Donations</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TitheHub – Accept Card & Crypto Donations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --radius: 12px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.08);
+      --hover-shadow: 0 12px 36px rgba(0,0,0,0.12);
+      --accent: #000;
+      --background: #fff;
+      --gray: #f8f8f8;
+    }
+
     body {
-      margin: 0;
       font-family: 'Inter', sans-serif;
-      background: #f9f9f9;
-      color: #333;
-    }
-    header {
-      background: linear-gradient(135deg, #f2c94c, #f2994a);
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
-    }
-    header h1 {
-      margin: 0 0 10px;
-      font-size: 3em;
-    }
-    header p {
       margin: 0;
-      font-size: 1.2em;
+      padding: 0;
+      background: var(--background);
+      color: var(--accent);
+      line-height: 1.6;
     }
-    nav {
-      text-align: center;
-      margin-top: 20px;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background: var(--gray);
+      box-shadow: var(--shadow);
     }
+
+    header img {
+      height: 40px;
+    }
+
     nav a {
-      margin: 0 15px;
-      color: #333;
+      margin-left: 1.5rem;
       text-decoration: none;
+      color: var(--accent);
       font-weight: 600;
     }
-    section {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+    nav a:hover {
+      color: #555;
     }
-    h2 {
-      margin-top: 0;
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
     }
-    .card {
-      padding: 15px;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      margin-bottom: 15px;
+
+    .hero-content {
+      max-width: 600px;
     }
-    .button {
-      background: #f2994a;
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      text-decoration: none;
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+    }
+
+    .hero-cta {
+      margin-top: 2rem;
+    }
+
+    .btn-primary, .btn-secondary {
       display: inline-block;
+      margin-right: 1rem;
+      padding: 0.9rem 1.8rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
     }
-    .toggle {
-      text-align: center;
-      margin-bottom: 20px;
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #fff;
+      box-shadow: var(--shadow);
     }
-    .toggle button {
-      background: #ddd;
+
+    .btn-primary:hover {
+      transform: scale(1.02);
+      box-shadow: var(--hover-shadow);
+    }
+
+    .btn-secondary {
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-secondary:hover {
+      background: var(--gray);
+    }
+
+    section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .features, .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card, .pricing-card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover, .pricing-card:hover {
+      transform: translateY(-4px);
+    }
+
+    iframe {
+      width: 100%;
+      height: 500px;
       border: none;
-      padding: 10px 20px;
-      margin: 0 5px;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
-    .toggle .active {
-      background: #f2994a;
-      color: white;
-    }
+
     footer {
+      background: var(--gray);
+      padding: 3rem 2rem;
       text-align: center;
-      font-size: 0.9em;
-      color: #777;
-      padding: 40px 20px;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
-  <script>
-    function togglePricing(type) {
-      document.getElementById('monthly').style.display = type === 'monthly' ? 'block' : 'none';
-      document.getElementById('annual').style.display = type === 'annual' ? 'block' : 'none';
-      document.getElementById('btn-monthly').classList.toggle('active', type === 'monthly');
-      document.getElementById('btn-annual').classList.toggle('active', type === 'annual');
-    }
-  </script>
 </head>
 <body>
 
-<header>
-  <h1>TitheHub</h1>
-  <p>Accept Tithes & Donations with Crypto or Stripe</p>
-  <p>
-    <a href="/chatgpt" style="color: white; font-weight: bold; text-decoration: underline;">
-      Launch Donation Page with ChatGPT →
-    </a>
-  </p>
-</header>
+  <header>
+    <img src="/assets/gold-cross-logo.png" alt="TitheHub Logo">
+    <nav>
+      <a href="#">What We Do</a>
+      <a href="#">Features</a>
+      <a href="#">Pricing</a>
+      <a href="#">Sign Up</a>
+      <a href="#">Referral</a>
+    </nav>
+  </header>
 
-<nav>
-  <a href="#features">Features</a>
-  <a href="#pricing">Pricing</a>
-  <a href="#signup">Sign Up</a>
-  <a href="/chatgpt">AI Assistant</a>
-</nav>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Effortless Giving for Modern Ministries</h1>
+      <p>Accept donations by card or crypto. No code. No fuss. Just impact.</p>
+      <div class="hero-cta">
+        <a href="#signup" class="btn-primary">Create Donation Page</a>
+        <a href="#referral" class="btn-secondary">Become a Referrer</a>
+      </div>
+    </div>
+    <img src="/assets/stained-glass-illustration.png" alt="Giving illustration" class="hero-image" style="max-width:400px;" />
+  </section>
 
-<section id="features">
-  <h2>Features</h2>
-  <div class="card">✅ Accept Bitcoin, Ethereum, and USDC</div>
-  <div class="card">✅ Recurring donations via Stripe</div>
-  <div class="card">✅ Hosted donation pages or embeddable widgets</div>
-  <div class="card">✅ Referral system: earn 10% of all subscriptions</div>
-</section>
+  <section class="container">
+    <h2>TitheHub Mission Statement</h2>
+    <p>TitheHub helps churches, charities, and community-led causes accept crypto and card donations online — instantly, securely, and with zero technical setup. Whether you're a small ministry or a global charity, TitheHub gives you the tools to grow your mission and reach modern givers.</p>
+  </section>
 
-<section id="pricing">
-  <h2>Pricing</h2>
-  <div class="toggle">
-    <button id="btn-monthly" class="active" onclick="togglePricing('monthly')">Monthly</button>
-    <button id="btn-annual" onclick="togglePricing('annual')">Annual (25% Off)</button>
-  </div>
+  <section class="container">
+    <h2>How It Works</h2>
+    <div class="features">
+      <div class="feature-card">
+        <h3>1. Create Your Page</h3>
+        <p>Use our sign-up form to generate your donation page and widget.</p>
+      </div>
+      <div class="feature-card">
+        <h3>2. Share the Widget</h3>
+        <p>Embed it in your site or share via link or QR code.</p>
+      </div>
+      <div class="feature-card">
+        <h3>3. Receive Donations</h3>
+        <p>Accept both card and crypto instantly — track everything from your dashboard.</p>
+      </div>
+    </div>
+  </section>
 
-  <div id="monthly">
-    <div class="card"><strong>Free:</strong> Basic donation button</div>
-    <div class="card"><strong>Starter (£9/mo):</strong> Hosted page + analytics</div>
-    <div class="card"><strong>Pro (£19/mo):</strong> Full embed + CRM tools</div>
-  </div>
+  <section class="container">
+    <h2>Pricing Plans</h2>
+    <div class="pricing-cards">
+      <div class="pricing-card">
+        <h3>Free</h3>
+        <p>£0/mo</p>
+        <p>Basic donations & manual form setup</p>
+      </div>
+      <div class="pricing-card">
+        <h3>Starter</h3>
+        <p>£9/mo</p>
+        <p>Hosted page, widget, email alerts</p>
+        <a href="https://buy.stripe.com/xyz-starter" class="btn-secondary">Subscribe</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Pro</h3>
+        <p>£29/mo</p>
+        <p>Custom domains, analytics, referral earnings</p>
+        <a href="https://buy.stripe.com/xyz-pro" class="btn-primary">Subscribe</a>
+      </div>
+    </div>
+  </section>
 
-  <div id="annual" style="display: none;">
-    <div class="card"><strong>Starter Annual (£81/yr):</strong> Hosted page + analytics (save 25%)</div>
-    <div class="card"><strong>Pro Annual (£171/yr):</strong> Full embed + CRM tools (save 25%)</div>
-  </div>
-</section>
+  <section class="container" id="signup">
+    <h2>Sign Up to Get Started</h2>
+    <iframe src="https://docs.google.com/forms/d/e/your-google-form-id/viewform?embedded=true">Loading…</iframe>
+  </section>
 
-<section id="signup" style="padding: 40px; text-align: center;">
-  <h2>Sign Up to Get Your Donation Page</h2>
-  <iframe 
-    src="https://docs.google.com/forms/d/e/1FAIpQLSfMs1jnlYxpfrZQ20lHIF9NfsydOod9j1m4GyYkG_d0yDrNZA/viewform?embedded=true" 
-    width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" style="border-radius: 12px; max-width: 800px;">
-    Loading…
-  </iframe>
-</section>
+  <section class="container" id="referral">
+    <h2>Referral Program</h2>
+    <p>Earn 10% of every subscription you refer, automatically. Just share your unique referral link.</p>
+    <a href="https://forms.gle/your-referral-signup" class="btn-primary">Join the Program</a>
+  </section>
 
-<section id="referrals">
-  <h2>Refer & Earn</h2>
-  <div class="card">
-    <p>Earn <strong>10% of every subscription</strong> for each church or nonprofit you refer.</p>
-    <p>Get your personal referral link and start sharing:</p>
-    <p>
-      <a href="https://forms.gle/YOUR_FORM_LINK" class="button">
-        Join the Referral Program
-      </a>
-    </p>
-    <small>(Referral rewards apply only to subscriptions. Not applicable to donations.)</small>
-  </div>
-</section>
-
-<footer>
-  <p>&copy; 2025 TitheHub. Built with love for communities. | Powered by GitHub Pages</p>
-</footer>
+  <footer>
+    <div>
+      © TitheHub 2025 | <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Contact</a><br />
+      BTC Donations: <code>37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5</code><br /><br />
+      <a href="#">X</a> | <a href="#">GitHub</a> | <a href="#">Reddit</a>
+    </div>
+  </footer>
 
 </body>
 </html>
