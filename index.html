@@ -37,7 +37,7 @@
   <script>
     async function loadDonationPage() {
       const params = new URLSearchParams(window.location.search);
-      const ref = params.get('ref');
+      const ref = params.get('ref') || window.location.pathname.split("/").pop();
       const content = document.getElementById('content');
 
       if (!ref) {
@@ -62,7 +62,7 @@
           <img src="/qr/qr-${ref}.png" alt="QR Code" class="qr" />
         `;
       } catch (err) {
-        content.innerHTML = "<h1>Error loading data</h1>";
+        content.innerHTML = "<h1>Error loading donation page.</h1>";
         console.error(err);
       }
     }
