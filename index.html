@@ -3,71 +3,125 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Donate – TitheHub</title>
+  <title>TitheHub – Accept Card & Crypto Donations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
+    :root {
+      --radius: 12px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.08);
+      --hover-shadow: 0 12px 36px rgba(0,0,0,0.12);
+      --accent: #000;
+      --background: #fff;
+      --gray: #f8f8f8;
+    }
+    * { box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #fff;
-      color: #111;
+      font-family: 'Inter', sans-serif;
       margin: 0;
+      background: var(--background);
+      color: var(--accent);
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--gray);
+      box-shadow: var(--shadow);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img {
+      height: 40px;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
       padding: 2rem;
-      text-align: center;
+    }
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4rem 2rem;
+    }
+    .hero img {
+      max-width: 400px;
+      border-radius: var(--radius);
     }
     h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
-    iframe {
-      border: none;
-      width: 100%;
-      max-width: 600px;
-      height: 600px;
-      margin: 2rem auto;
-      display: block;
+    p { font-size: 1.1rem; }
+    .btn-primary, .btn-secondary {
+      display: inline-block;
+      margin-right: 1rem;
+      margin-top: 1rem;
+      padding: 0.9rem 1.8rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
     }
-    img.qr {
-      margin-top: 2rem;
-      width: 200px;
-      height: auto;
+    .btn-primary {
+      background-color: var(--accent);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+    .btn-secondary {
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+    .btn-primary:hover, .btn-secondary:hover {
+      transform: scale(1.02);
+      box-shadow: var(--hover-shadow);
+    }
+    footer {
+      text-align: center;
+      background: var(--gray);
+      padding: 2rem;
+      font-size: 0.875rem;
     }
   </style>
 </head>
 <body>
-  <div id="content">Loading...</div>
+  <header>
+    <img src="./gold-cross-logo.png" alt="TitheHub Logo" />
+    <nav>
+      <a href="#mission">Mission</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#signup">Sign Up</a>
+      <a href="#referral">Referral</a>
+    </nav>
+  </header>
 
-  <script>
-    async function loadDonationPage() {
-      const params = new URLSearchParams(window.location.search);
-      const ref = params.get('ref') || window.location.pathname.split("/").pop();
-      const content = document.getElementById('content');
+  <section class="hero container">
+    <div>
+      <h1>Effortless Giving for Modern Ministries</h1>
+      <p>Accept card and crypto donations instantly with a hosted donation page and embeddable widget.</p>
+      <a href="#signup" class="btn-primary">Create Donation Page</a>
+      <a href="#chatgpt" class="btn-secondary">Ask TitheHub AI</a>
+    </div>
+    <img src="./gold-cross-logo.png" alt="TitheHub Illustration" />
+  </section>
 
-      if (!ref) {
-        content.innerHTML = "<h1>Missing referral ID.</h1>";
-        return;
-      }
+  <section id="chatgpt" class="container">
+    <h2>Talk to TitheHub AI</h2>
+    <p>Ask questions about setup, donations, referrals, or how to earn. Powered by ChatGPT.</p>
+    <a href="https://chat.openai.com/" target="_blank" class="btn-secondary">Open ChatGPT</a>
+  </section>
 
-      try {
-        const res = await fetch('/donation.json');
-        const data = await res.json();
-
-        if (!data[ref]) {
-          content.innerHTML = `<h1>Referral Not Found</h1><p>No entry found for "${ref}".</p>`;
-          return;
-        }
-
-        const org = data[ref];
-        content.innerHTML = `
-          <h1>${org.name}</h1>
-          <p>${org.mission}</p>
-          ${org.widget ? `<iframe src="${org.widget}"></iframe>` : ''}
-          <img src="/qr/qr-${ref}.png" alt="QR Code" class="qr" />
-        `;
-      } catch (err) {
-        content.innerHTML = "<h1>Error loading donation page.</h1>";
-        console.error(err);
-      }
-    }
-
-    loadDonationPage();
-  </script>
+  <footer>
+    © TitheHub 2025 | BTC: 37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5
+  </footer>
 </body>
 </html>
