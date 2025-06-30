@@ -6,22 +6,11 @@
   <title>TitheHub – Accept Card & Crypto Donations</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --radius: 12px;
-      --shadow: 0 8px 24px rgba(0,0,0,0.08);
-      --hover-shadow: 0 12px 36px rgba(0,0,0,0.12);
-      --accent: #000;
-      --background: #fff;
-      --gray: #f8f8f8;
-    }
-
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
-      padding: 0;
-      background: var(--background);
-      color: var(--accent);
-      line-height: 1.6;
+      background: #fff;
+      color: #111;
     }
 
     header {
@@ -29,30 +18,26 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 2rem;
-      background: var(--gray);
-      box-shadow: var(--shadow);
+      background: #f8f8f8;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     header img {
-      height: 40px;
+      height: 45px;
     }
 
     nav a {
       margin-left: 1.5rem;
       text-decoration: none;
-      color: var(--accent);
+      color: #111;
       font-weight: 600;
-    }
-
-    nav a:hover {
-      color: #555;
     }
 
     .hero {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
       padding: 4rem 2rem;
       max-width: 1200px;
       margin: auto;
@@ -67,7 +52,7 @@
       margin-bottom: 1rem;
     }
 
-    .hero p {
+    p {
       font-size: 1.1rem;
     }
 
@@ -79,100 +64,67 @@
       display: inline-block;
       margin-right: 1rem;
       padding: 0.9rem 1.8rem;
-      border-radius: var(--radius);
+      border-radius: 8px;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.25s ease;
     }
 
     .btn-primary {
-      background-color: var(--accent);
+      background: #000;
       color: #fff;
-      box-shadow: var(--shadow);
-    }
-
-    .btn-primary:hover {
-      transform: scale(1.02);
-      box-shadow: var(--hover-shadow);
     }
 
     .btn-secondary {
-      border: 2px solid var(--accent);
-      color: var(--accent);
-    }
-
-    .btn-secondary:hover {
-      background: var(--gray);
+      border: 2px solid #000;
+      color: #000;
     }
 
     section {
-      padding: 3rem 2rem;
       max-width: 1200px;
       margin: auto;
+      padding: 2rem;
     }
 
     .container {
       background: #fff;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       padding: 2rem;
       margin-bottom: 2rem;
-    }
-
-    .features, .pricing-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-    }
-
-    .feature-card, .pricing-card {
-      background: #fff;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 2rem;
-      transition: transform 0.3s ease;
-    }
-
-    .feature-card:hover, .pricing-card:hover {
-      transform: translateY(-4px);
     }
 
     iframe {
       width: 100%;
       height: 500px;
       border: none;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      border-radius: 12px;
     }
 
     footer {
-      background: var(--gray);
+      background: #f5f5f5;
       padding: 3rem 2rem;
       text-align: center;
       font-size: 0.9rem;
     }
 
     footer a {
-      color: var(--accent);
+      color: #111;
       text-decoration: none;
       margin: 0 0.5rem;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="/assets/gold-cross-logo.png" alt="TitheHub Logo">
+    <img src="assets/gold-cross-logo.png" alt="TitheHub Logo">
     <nav>
-      <a href="#">What We Do</a>
-      <a href="#">Features</a>
-      <a href="#">Pricing</a>
-      <a href="#">Sign Up</a>
-      <a href="#">Referral</a>
+      <a href="#mission">What We Do</a>
+      <a href="#how-it-works">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#signup">Sign Up</a>
+      <a href="#referral">Referral</a>
     </nav>
   </header>
 
@@ -185,72 +137,58 @@
         <a href="#referral" class="btn-secondary">Become a Referrer</a>
       </div>
     </div>
-    <img src="/assets/stained-glass-illustration.png" alt="Giving illustration" class="hero-image" style="max-width:400px;" />
+    <img src="assets/stained-glass-illustration.png" alt="Giving illustration" style="max-width: 400px;">
   </section>
 
-  <section class="container">
+  <section id="mission" class="container">
     <h2>TitheHub Mission Statement</h2>
     <p>TitheHub helps churches, charities, and community-led causes accept crypto and card donations online — instantly, securely, and with zero technical setup. Whether you're a small ministry or a global charity, TitheHub gives you the tools to grow your mission and reach modern givers.</p>
   </section>
 
-  <section class="container">
+  <section id="how-it-works" class="container">
     <h2>How It Works</h2>
-    <div class="features">
-      <div class="feature-card">
-        <h3>1. Create Your Page</h3>
-        <p>Use our sign-up form to generate your donation page and widget.</p>
-      </div>
-      <div class="feature-card">
-        <h3>2. Share the Widget</h3>
-        <p>Embed it in your site or share via link or QR code.</p>
-      </div>
-      <div class="feature-card">
-        <h3>3. Receive Donations</h3>
-        <p>Accept both card and crypto instantly — track everything from your dashboard.</p>
-      </div>
-    </div>
+    <ol>
+      <li>Create Your Donation Page</li>
+      <li>Share the Widget or Link</li>
+      <li>Receive Card & Crypto Donations Instantly</li>
+    </ol>
   </section>
 
-  <section class="container">
+  <section id="pricing" class="container">
     <h2>Pricing Plans</h2>
     <div class="pricing-cards">
       <div class="pricing-card">
         <h3>Free</h3>
-        <p>£0/mo</p>
-        <p>Basic donations & manual form setup</p>
+        <p>£0/mo — Manual setup</p>
       </div>
       <div class="pricing-card">
         <h3>Starter</h3>
-        <p>£9/mo</p>
-        <p>Hosted page, widget, email alerts</p>
+        <p>£9/mo — Hosted page, email alerts</p>
         <a href="https://buy.stripe.com/xyz-starter" class="btn-secondary">Subscribe</a>
       </div>
       <div class="pricing-card">
         <h3>Pro</h3>
-        <p>£29/mo</p>
-        <p>Custom domains, analytics, referral earnings</p>
+        <p>£29/mo — Custom domain, analytics</p>
         <a href="https://buy.stripe.com/xyz-pro" class="btn-primary">Subscribe</a>
       </div>
     </div>
   </section>
 
-  <section class="container" id="signup">
+  <section id="signup" class="container">
     <h2>Sign Up to Get Started</h2>
-    <iframe src="https://docs.google.com/forms/d/e/your-google-form-id/viewform?embedded=true">Loading…</iframe>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc35M7ueuExBvJtFwhdbK0gEDRPzUt69FqTZCqzWSz_dCd-cQ/viewform?embedded=true">Loading…</iframe>
   </section>
 
-  <section class="container" id="referral">
+  <section id="referral" class="container">
     <h2>Referral Program</h2>
-    <p>Earn 10% of every subscription you refer, automatically. Just share your unique referral link.</p>
-    <a href="https://forms.gle/your-referral-signup" class="btn-primary">Join the Program</a>
+    <p>Earn 10% of every subscription you refer. No limits.</p>
+    <a href="https://forms.gle/example" class="btn-primary">Join the Program</a>
   </section>
 
   <footer>
-    <div>
-      © TitheHub 2025 | <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Contact</a><br />
-      BTC Donations: <code>37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5</code><br /><br />
-      <a href="#">X</a> | <a href="#">GitHub</a> | <a href="#">Reddit</a>
-    </div>
+    © TitheHub 2025 | <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Contact</a><br />
+    BTC: <code>37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5</code><br /><br />
+    <a href="#">X</a> | <a href="#">GitHub</a> | <a href="#">Reddit</a>
   </footer>
 
 </body>
