@@ -1,130 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TitheHub – Accept Tithes with Crypto & Card</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { inter: ['Inter', 'sans-serif'] },
-          colors: {
-            gold: '#f2c94c',
-            goldDeep: '#f2994a',
-            glassWhite: 'rgba(255, 255, 255, 0.6)'
-          },
-          boxShadow: {
-            glass: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )'
-          },
-          backdropBlur: {
-            md: '12px'
-          }
-        }
-      }
-    };
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>TitheHub – Accept Crypto & Card Donations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
+      margin: 0;
       font-family: 'Inter', sans-serif;
+      background: #f9f9f9;
+      color: #333;
     }
-    .bg-gold-radial {
-      background: radial-gradient(circle at top left, #f2c94c, #f2994a);
+    header {
+      background: linear-gradient(135deg, #f2c94c, #f2994a);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 3em;
+    }
+    header p {
+      margin: 0;
+      font-size: 1.2em;
+    }
+    nav {
+      text-align: center;
+      margin-top: 20px;
+    }
+    nav a {
+      margin: 0 15px;
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    section {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    h2 {
+      margin-top: 0;
+    }
+    .card {
+      padding: 15px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .button {
+      background: #f2994a;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .wallet {
+      font-family: monospace;
+      background: #f1f1f1;
+      padding: 8px;
+      border-radius: 4px;
+      display: inline-block;
+      word-break: break-word;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #777;
+      padding: 40px 20px;
     }
   </style>
 </head>
-<body class="bg-white text-gray-800">
+<body>
 
-  <!-- Hero Section -->
-  <header class="relative bg-gold-radial text-white py-24 px-6 overflow-hidden">
-    <div class="max-w-7xl mx-auto text-center relative z-10">
-      <img src="https://tithehub.github.io/tithehub/gold-cross-logo.png" alt="TitheHub Logo" class="mx-auto w-14 mb-6 drop-shadow-xl">
-      <h1 class="text-4xl md:text-6xl font-bold leading-tight">Accept Tithes with Crypto & Card</h1>
-      <p class="mt-4 text-xl max-w-2xl mx-auto">A modern donation platform for churches, charities, and communities of faith.</p>
-      <a href="#signup" class="mt-6 inline-block bg-white text-goldDeep font-semibold py-3 px-6 rounded-xl shadow hover:scale-105 transition">Get Started</a>
-    </div>
-    <img src="https://tithehub.github.io/tithehub/gold-coin.png" alt="Coin" class="absolute top-4 left-6 w-24 opacity-30 rotate-12">
-    <img src="https://tithehub.github.io/tithehub/gold-coin.png" alt="Coin" class="absolute bottom-4 right-6 w-16 opacity-20 rotate-45">
-  </header>
+<header>
+  <h1>TitheHub</h1>
+  <p>Accept Tithes & Donations with Crypto or Stripe</p>
+  <p>
+    <a href="/chatgpt" style="color: white; font-weight: bold; text-decoration: underline;">
+      Launch Donation Page with ChatGPT →
+    </a>
+  </p>
+</header>
 
-  <!-- Pricing Toggle -->
-  <section id="pricing" class="py-20 bg-gray-50">
-    <div class="max-w-4xl mx-auto text-center px-4">
-      <h2 class="text-3xl font-bold mb-8">Simple Pricing</h2>
-      <div class="flex justify-center items-center gap-4 mb-6">
-        <label class="font-semibold">Monthly</label>
-        <label class="relative inline-flex items-center cursor-pointer">
-          <input type="checkbox" id="priceToggle" class="sr-only">
-          <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-checked:bg-goldDeep transition-all"></div>
-          <div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full peer-checked:translate-x-full transition-transform"></div>
-        </label>
-        <label class="font-semibold">Annual (Save 25%)</label>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="glass-card p-8 rounded-xl shadow-glass text-left">
-          <h3 class="text-xl font-semibold mb-2">Starter</h3>
-          <p class="text-3xl font-bold mb-4" id="starterPrice">£9<span class="text-sm font-normal">/month</span></p>
-          <ul class="text-sm list-disc list-inside mb-6">
-            <li>Hosted donation page</li>
-            <li>Custom branding</li>
-          </ul>
-          <a href="#signup" class="inline-block bg-goldDeep text-white py-2 px-5 rounded-lg shadow hover:bg-gold">Choose Plan</a>
-        </div>
-        <div class="glass-card p-8 rounded-xl shadow-glass text-left">
-          <h3 class="text-xl font-semibold mb-2">Pro</h3>
-          <p class="text-3xl font-bold mb-4" id="proPrice">£19<span class="text-sm font-normal">/month</span></p>
-          <ul class="text-sm list-disc list-inside mb-6">
-            <li>Embedded widget</li>
-            <li>Analytics & CRM tools</li>
-          </ul>
-          <a href="#signup" class="inline-block bg-goldDeep text-white py-2 px-5 rounded-lg shadow hover:bg-gold">Choose Plan</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<nav>
+  <a href="#features">Features</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#signup">Sign Up</a>
+  <a href="/chatgpt">AI Assistant</a>
+</nav>
 
-  <!-- Scripture Quote -->
-  <section class="py-16 bg-white text-center px-4">
-    <blockquote class="max-w-3xl mx-auto text-xl italic text-gray-700">
-      “Bring the whole tithe into the storehouse... Test me in this,” says the Lord Almighty, “and see if I will not throw open the floodgates of heaven.”
-      <br><span class="font-semibold text-goldDeep mt-2 block">– Malachi 3:10</span>
-    </blockquote>
-  </section>
+<section id="features">
+  <h2>Features</h2>
+  <div class="card">✅ Accept Bitcoin, Ethereum, and USDC</div>
+  <div class="card">✅ Recurring donations via Stripe</div>
+  <div class="card">✅ Hosted donation pages or widgets</div>
+</section>
 
-  <!-- Signup Form -->
-  <section id="signup" class="py-20 bg-gray-100 rounded-t-3xl">
-    <div class="max-w-4xl mx-auto text-center px-4">
-      <h2 class="text-3xl font-bold mb-6">Launch Your Page</h2>
-      <p class="mb-6">Just fill in the form and your crypto & card donation page will be live in minutes.</p>
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSfMs1jnlYxpfrZQ20lHIF9NfsydOod9j1m4GyYkG_d0yDrNZA/viewform?embedded=true"
-        width="100%" height="800" class="rounded-xl border border-gray-300 bg-white shadow-xl">
-        Loading…
-      </iframe>
-    </div>
-  </section>
+<section id="pricing">
+  <h2>Pricing</h2>
+  <div class="card"><strong>Free:</strong> Basic donation button</div>
+  <div class="card"><strong>Starter (£9/mo):</strong> Hosted page + analytics</div>
+  <div class="card"><strong>Pro (£19/mo):</strong> Full embed + CRM tools</div>
+  <p><a href="#" class="button">Start with Stripe (coming soon)</a></p>
+</section>
 
-  <!-- Footer -->
-  <footer class="bg-white text-center py-10 text-sm text-gray-500">
-    &copy; 2025 TitheHub. Built with purpose. | <a href="https://x.com/tithehub" class="text-gold hover:underline">@tithehub</a>
-  </footer>
+<section id="signup" style="padding: 40px; text-align: center;">
+  <h2>Sign Up to Get Your Donation Page</h2>
+  <iframe 
+    src="https://docs.google.com/forms/d/e/1FAIpQLSfMs1jnlYxpfrZQ20lHIF9NfsydOod9j1m4GyYkG_d0yDrNZA/viewform?embedded=true" 
+    width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" style="border-radius: 12px; max-width: 800px;">
+    Loading…
+  </iframe>
+</section>
 
-  <script>
-    const toggle = document.getElementById('priceToggle');
-    const starterPrice = document.getElementById('starterPrice');
-    const proPrice = document.getElementById('proPrice');
-    toggle.addEventListener('change', function () {
-      if (this.checked) {
-        starterPrice.innerHTML = '£81<span class="text-sm font-normal">/year</span>';
-        proPrice.innerHTML = '£171<span class="text-sm font-normal">/year</span>';
-      } else {
-        starterPrice.innerHTML = '£9<span class="text-sm font-normal">/month</span>';
-        proPrice.innerHTML = '£19<span class="text-sm font-normal">/month</span>';
-      }
-    });
-  </script>
+<footer>
+  <p>&copy; 2025 TitheHub. Built with love for communities. | Powered by GitHub Pages</p>
+</footer>
 
 </body>
 </html>
