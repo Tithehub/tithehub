@@ -3,115 +3,199 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TitheHub GPT Onboarding</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>TitheHub – Accept Card & Crypto Donations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --radius: 12px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.08);
+      --hover-shadow: 0 12px 36px rgba(0,0,0,0.12);
+      --accent: #000;
+      --background: #fff;
+      --gray: #f8f8f8;
+    }
+    * { box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
-      padding: 0;
-      background: #fff;
-      color: #111;
-      line-height: 1.6;
+      background: var(--background);
+      color: var(--accent);
     }
     header {
+      position: sticky;
+      top: 0;
+      background: var(--gray);
+      box-shadow: var(--shadow);
       padding: 1rem 2rem;
-      background: #f8f8f8;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+    header img {
+      height: 40px;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
     }
     .container {
       max-width: 1200px;
       margin: auto;
       padding: 2rem;
     }
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4rem 2rem;
+    }
+    .hero img {
+      max-width: 400px;
+      border-radius: var(--radius);
+    }
     h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
     }
-    .button {
+    p { font-size: 1.1rem; }
+    .btn-primary, .btn-secondary {
       display: inline-block;
-      padding: 0.8rem 1.5rem;
-      background-color: #000;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
+      margin-right: 1rem;
+      margin-top: 1rem;
+      padding: 0.9rem 1.8rem;
+      border-radius: var(--radius);
       font-weight: 600;
-      transition: transform 0.2s ease;
+      text-decoration: none;
+      transition: all 0.25s ease;
     }
-    .button:hover {
-      transform: scale(1.05);
+    .btn-primary {
+      background-color: var(--accent);
+      color: #fff;
+      box-shadow: var(--shadow);
     }
-    .install-metamask, .referral-tools, .demo-video {
-      margin-top: 3rem;
-      background: #f5f5f5;
+    .btn-secondary {
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+    .btn-primary:hover, .btn-secondary:hover {
+      transform: scale(1.02);
+      box-shadow: var(--hover-shadow);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
       padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
     }
+    .card:hover { transform: scale(1.02); }
     iframe {
       width: 100%;
-      max-width: 100%;
-      border: none;
-      border-radius: 8px;
       height: 500px;
+      border: none;
+      border-radius: var(--radius);
+    }
+    footer {
+      text-align: center;
+      background: var(--gray);
+      padding: 2rem;
+      font-size: 0.875rem;
     }
   </style>
-  <script>
-    // MetaMask detection
-    window.addEventListener('load', function () {
-      const mmLink = document.getElementById('metamask-link');
-      if (typeof window.ethereum === 'undefined') {
-        mmLink.style.display = 'inline-block';
-      } else {
-        mmLink.style.display = 'none';
-      }
-
-      // Store ref code from ?ref= into cookie
-      const urlParams = new URLSearchParams(window.location.search);
-      const ref = urlParams.get('ref');
-      if (ref) {
-        document.cookie = `ref=${ref}; path=/`;
-        const refField = document.getElementById('ref-input');
-        if (refField) refField.value = ref;
-      }
-    });
-  </script>
 </head>
 <body>
   <header>
-    <h1>TitheHub AI Onboarding</h1>
-    <a href="/" class="button">← Back to Home</a>
+    <img src="assets/gold-cross-logo.png" alt="TitheHub Logo" />
+    <nav>
+      <a href="#mission">Mission</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#signup">Sign Up</a>
+      <a href="#referral">Referral</a>
+    </nav>
   </header>
 
-  <section class="container">
-    <h2>Launch TitheHub AI</h2>
-    <p>Click below to open our AI assistant and begin setting up your donation page via ChatGPT.</p>
-    <a class="button" href="https://chat.openai.com/?ref=tithehub" target="_blank">Launch TitheHub GPT</a>
+  <section class="hero container">
+    <div>
+      <h1>Effortless Giving for Modern Ministries</h1>
+      <p>Accept card and crypto donations instantly with a free hosted donation page and embedded widget.</p>
+      <a href="#signup" class="btn-primary">Create Donation Page</a>
+      <a href="#chatgpt" class="btn-secondary">Ask TitheHub AI</a>
+    </div>
+    <img src="assets/stained-glass-illustration.png" alt="Giving Illustration" />
   </section>
 
-  <section class="container install-metamask">
-    <h2>Need a Wallet?</h2>
-    <p>If you're new to crypto, you’ll need MetaMask to receive donations.</p>
-    <a id="metamask-link" class="button" href="https://metamask.io/download.html" target="_blank">Install MetaMask</a>
+  <section id="mission" class="container">
+    <h2>Our Mission</h2>
+    <p>TitheHub empowers churches, nonprofits, and community causes to receive modern donations — by card or crypto — with zero technical setup. Our platform automates your giving process with embeddable widgets, hosted pages, and referral rewards.</p>
   </section>
 
-  <section class="container">
-    <h2>Sign Up to Join</h2>
+  <section id="features" class="container">
+    <h2>How It Works</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>1. Create Your Page</h3>
+        <p>Fill out our short form to generate your hosted donation page and widget instantly.</p>
+      </div>
+      <div class="card">
+        <h3>2. Share the Link or Widget</h3>
+        <p>Embed the widget in your site or share your hosted donation page anywhere.</p>
+      </div>
+      <div class="card">
+        <h3>3. Accept Donations</h3>
+        <p>Receive donations via card or crypto and track them through your dashboard.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="container">
+    <h2>Pricing Plans</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Free</h3>
+        <p>£0/mo – Manual setup, basic support</p>
+      </div>
+      <div class="card">
+        <h3>Starter</h3>
+        <p>£9/mo – Hosted page, widget, email alerts</p>
+        <a href="https://buy.stripe.com/xyz-starter" class="btn-secondary">Subscribe</a>
+      </div>
+      <div class="card">
+        <h3>Pro</h3>
+        <p>£29/mo – Custom domain, referral earnings, analytics</p>
+        <a href="https://buy.stripe.com/xyz-pro" class="btn-primary">Subscribe</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="signup" class="container">
+    <h2>Sign Up to Get Started</h2>
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdMno1GCnbntwVP7Do_O8p_WHP5gVmDQ2Tx9WGEHRDJbWnmRQ/viewform?embedded=true">Loading…</iframe>
   </section>
 
-  <section class="container referral-tools">
-    <h2>Referral Tools</h2>
-    <p>After you sign up, we’ll email you your unique referral link and QR code. Share it to earn 10% from every subscription.</p>
+  <section id="referral" class="container">
+    <h2>Referral Program</h2>
+    <p>Earn 10% of every subscription you refer — for life. Invite your network and start earning today.</p>
+    <a href="https://forms.gle/example" class="btn-primary">Join Referral Program</a>
   </section>
 
-  <section class="container demo-video">
-    <h2>How It Works</h2>
-    <p>Watch the 1-minute walkthrough on how TitheHub GPT helps you launch a donation page in seconds.</p>
-    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="TitheHub GPT Demo"></iframe>
+  <section id="chatgpt" class="container">
+    <h2>Talk to TitheHub AI</h2>
+    <p>Have a question about donations, setup, or pricing? Ask our AI assistant powered by ChatGPT.</p>
+    <a href="https://chat.openai.com/" target="_blank" class="btn-secondary">Open ChatGPT</a>
   </section>
+
+  <footer>
+    © TitheHub 2025 | <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Contact</a><br />
+    BTC: 37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5
+  </footer>
 </body>
 </html>
