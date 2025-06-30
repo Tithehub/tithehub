@@ -71,6 +71,23 @@
       display: inline-block;
       word-break: break-word;
     }
+    .toggle {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .toggle button {
+      background: #ddd;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 5px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .toggle .active {
+      background: #f2994a;
+      color: white;
+    }
     footer {
       text-align: center;
       font-size: 0.9em;
@@ -78,6 +95,14 @@
       padding: 40px 20px;
     }
   </style>
+  <script>
+    function togglePricing(type) {
+      document.getElementById('monthly').style.display = type === 'monthly' ? 'block' : 'none';
+      document.getElementById('annual').style.display = type === 'annual' ? 'block' : 'none';
+      document.getElementById('btn-monthly').classList.toggle('active', type === 'monthly');
+      document.getElementById('btn-annual').classList.toggle('active', type === 'annual');
+    }
+  </script>
 </head>
 <body>
 
@@ -102,15 +127,27 @@
   <h2>Features</h2>
   <div class="card">✅ Accept Bitcoin, Ethereum, and USDC</div>
   <div class="card">✅ Recurring donations via Stripe</div>
-  <div class="card">✅ Hosted donation pages or widgets</div>
+  <div class="card">✅ Hosted donation pages or embeddable widgets</div>
+  <div class="card">✅ Referral system: earn 10% of all subscriptions</div>
 </section>
 
 <section id="pricing">
   <h2>Pricing</h2>
-  <div class="card"><strong>Free:</strong> Basic donation button</div>
-  <div class="card"><strong>Starter (£9/mo):</strong> Hosted page + analytics</div>
-  <div class="card"><strong>Pro (£19/mo):</strong> Full embed + CRM tools</div>
-  <p><a href="#" class="button">Start with Stripe (coming soon)</a></p>
+  <div class="toggle">
+    <button id="btn-monthly" class="active" onclick="togglePricing('monthly')">Monthly</button>
+    <button id="btn-annual" onclick="togglePricing('annual')">Annual (25% Off)</button>
+  </div>
+
+  <div id="monthly">
+    <div class="card"><strong>Free:</strong> Basic donation button</div>
+    <div class="card"><strong>Starter (£9/mo):</strong> Hosted page + analytics</div>
+    <div class="card"><strong>Pro (£19/mo):</strong> Full embed + CRM tools</div>
+  </div>
+
+  <div id="annual" style="display: none;">
+    <div class="card"><strong>Starter Annual (£81/yr):</strong> Hosted page + analytics (save 25%)</div>
+    <div class="card"><strong>Pro Annual (£171/yr):</strong> Full embed + CRM tools (save 25%)</div>
+  </div>
 </section>
 
 <section id="signup" style="padding: 40px; text-align: center;">
