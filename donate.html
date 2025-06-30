@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TitheHub Donation Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 2rem;
+      color: #111;
+      max-width: 800px;
+      margin-inline: auto;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    #widget-container {
+      margin-top: 2rem;
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 8px;
+    }
+    .qr {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .qr img {
+      max-width: 240px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="org-name">Loading...</h1>
+  <p id="org-mission"></p>
+
+  <div id="widget-container"></div>
+  <div class="qr"><img id="qr-code" src="" alt="QR Code"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get("ref");
+
+    async function loadOrgData() {
+      if (!slug) {
+        document.getElementById("org-name").textContent = "Missing referral ID.";
+        return;
+      }
+
+      const res = await fetch("../donation.json");
+      const data = await res.json();
+
+      const org = data[slug];
+      if (!org) {
+        document.getElementById("org-name").textContent = "Donation page not found.";
+        return;
+      }
+
+      document.getElementById("org-name").textContent = org.name;
+      document.getElementById("org-mission").textContent = org.mission || "";
+      document.getElementById("widget-container").innerHTML = `<iframe src='${org.widget}'></iframe>`;
+      document.getElementById("qr-code").src = `../qr/qr-${slug}.png`;
+    }
+
+    loadOrgData();
+  </script>
+</body>
+</html>
