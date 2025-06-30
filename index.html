@@ -60,11 +60,14 @@
       font-size: 2.5rem;
       margin-bottom: 1rem;
     }
+    h2 {
+      font-size: 2rem;
+      margin-top: 2rem;
+    }
     p { font-size: 1.1rem; }
     .btn-primary, .btn-secondary {
       display: inline-block;
-      margin-right: 1rem;
-      margin-top: 1rem;
+      margin: 0.5rem;
       padding: 0.9rem 1.8rem;
       border-radius: var(--radius);
       font-weight: 600;
@@ -102,6 +105,23 @@
       height: 500px;
       border: none;
       border-radius: var(--radius);
+    }
+    .toggle {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .toggle button {
+      background: none;
+      border: 2px solid var(--accent);
+      padding: 0.5rem 1.5rem;
+      border-radius: var(--radius);
+      font-weight: bold;
+      cursor: pointer;
+      margin: 0.5rem;
+    }
+    .toggle button.active {
+      background-color: var(--accent);
+      color: white;
     }
     footer {
       text-align: center;
@@ -158,23 +178,31 @@
 
   <section id="pricing" class="container">
     <h2>Pricing Plans</h2>
+    <div class="toggle">
+      <button onclick="showPlans('monthly')" id="btn-monthly" class="active">Monthly</button>
+      <button onclick="showPlans('annual')" id="btn-annual">Annual</button>
+    </div>
     <div class="card-grid">
       <div class="card">
+        <h3>Free</h3>
+        <p>£0 – Manual setup, basic support, community forum</p>
+      </div>
+      <div class="card plan monthly">
         <h3>Starter Monthly</h3>
         <p>£9/mo – Hosted page, widget, email alerts</p>
         <a href="https://buy.stripe.com/14A14oenz6Fddgk3SNbfO02" class="btn-secondary">Subscribe</a>
       </div>
-      <div class="card">
+      <div class="card plan annual" style="display: none;">
         <h3>Starter Annual</h3>
         <p>£99/yr – Hosted page, widget, email alerts</p>
         <a href="https://buy.stripe.com/4gMeVe0wJaVt1xCdtnbfO01" class="btn-secondary">Subscribe</a>
       </div>
-      <div class="card">
+      <div class="card plan monthly">
         <h3>Pro Monthly</h3>
         <p>£29/mo – Custom domain, referral earnings, analytics</p>
         <a href="https://buy.stripe.com/28E8wQdjvfbJekogFzbfO03" class="btn-primary">Subscribe</a>
       </div>
-      <div class="card">
+      <div class="card plan annual" style="display: none;">
         <h3>Pro Annual</h3>
         <p>£249/yr – Custom domain, referral earnings, analytics</p>
         <a href="https://buy.stripe.com/00w4gAbbn3t13FKgFzbfO00" class="btn-primary">Subscribe</a>
@@ -203,5 +231,17 @@
     © TitheHub 2025 | <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Contact</a><br />
     BTC: 37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5
   </footer>
+
+  <script>
+    function showPlans(type) {
+      const monthly = document.querySelectorAll('.plan.monthly');
+      const annual = document.querySelectorAll('.plan.annual');
+      document.getElementById('btn-monthly').classList.remove('active');
+      document.getElementById('btn-annual').classList.remove('active');
+      document.getElementById('btn-' + type).classList.add('active');
+      monthly.forEach(el => el.style.display = type === 'monthly' ? 'block' : 'none');
+      annual.forEach(el => el.style.display = type === 'annual' ? 'block' : 'none');
+    }
+  </script>
 </body>
 </html>
