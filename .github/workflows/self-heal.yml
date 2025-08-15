@@ -1,0 +1,29 @@
+name: Self-heal on failure
+on:
+  workflow_run:
+    workflows: ["Generate referral assets"]
+    types: [completed]
+
+jobs:
+  heal:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci || npm i
+      - name: Heal everything
+        env:
+          SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
+        run: node scripts/validate_and_heal.mjs
+      - name: Commit fixes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: tithehub-bot
+          author_email: bot@tithehub.com
+          message: "fix(ci): self-heal after failure"
+          add: "."
