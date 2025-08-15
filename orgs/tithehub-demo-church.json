@@ -1,17 +1,9 @@
 {
-  "slug": "tithehub-demo-church",
   "name": "TitheHub Demo Church",
   "email": "demo@tithehub.com",
   "orgWebsite": "https://tithehub.com",
   "stripeMonthlyLink": "https://buy.stripe.com/test_monthly_link",
   "stripeAnnualLink": "https://buy.stripe.com/test_annual_link",
-  "crypto": {
-    "BTC": "37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5",
-    "ETH": "0x0000000000000000000000000000000000000000",
-    "USDT": ""
-  },
-  "notes": "Thank you for supporting our mission.",
-  "donateUrl": "https://tithehub.com/donate/tithehub-demo-church",
-  "qrUrl": "https://tithehub.com/qrs/tithehub-demo-church.png",
-  "updatedAt": "2025-08-15T06:06:26.377Z"
+  "cryptoBTC": "37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5",
+  "notes": "Thank you for supporting our mission."
 }
