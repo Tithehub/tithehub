@@ -5,9 +5,13 @@
   "orgWebsite": "https://tithehub.com",
   "stripeMonthlyLink": "https://buy.stripe.com/test_monthly_link",
   "stripeAnnualLink": "https://buy.stripe.com/test_annual_link",
-  "crypto": {},
+  "crypto": {
+    "BTC": "37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5",
+    "ETH": "0x0000000000000000000000000000000000000000",
+    "USDT": ""
+  },
   "notes": "Thank you for supporting our mission.",
   "donateUrl": "https://tithehub.com/donate/tithehub-demo-church",
   "qrUrl": "https://tithehub.com/qrs/tithehub-demo-church.png",
-  "updatedAt": "2025-08-15T06:02:40.178Z"
+  "updatedAt": "2025-08-15T06:06:26.377Z"
 }
