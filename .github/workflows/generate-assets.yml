@@ -1,0 +1,30 @@
+name: Generate referral assets
+on:
+  repository_dispatch:
+    types: [tithehub_referral_created]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install deps
+        run: npm ci
+      - name: Generate assets
+        env:
+          SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+        run: node scripts/generate_assets.mjs
+      - name: Commit & push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: tithehub-bot
+          author_email: bot@tithehub.com
+          message: "chore: add org, QR, widget from dispatch"
+          add: "."

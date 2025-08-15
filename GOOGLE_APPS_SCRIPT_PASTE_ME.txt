@@ -1,0 +1,98 @@
+/*** Google Apps Script for TitheHub Automation (Tithehub/tithehub)
+
+SETUP
+1) Open your Google Form's Spreadsheet → Extensions → Apps Script.
+2) Paste this entire code.
+3) Script Properties → add key "GITHUB_PAT" with your GitHub Personal Access Token (scope: repo:public_repo).
+4) OWNER = "Tithehub", REPO = "tithehub" are set below.
+5) Deploy → "Deploy as web app" (execute as you; anyone with link can access). Copy the Web App URL.
+
+— Expected Sheet Columns (edit if different):
+  Name / Organisation Name, Email, Website, Stripe Monthly Link, Stripe Annual Link,
+  BTC Address, ETH Address, USDT Address, Notes
+
+*** SECURITY ***
+Do NOT put your PAT in repo files. Only store it in Script Properties.
+
+************************************************************/
+
+const OWNER = "Tithehub";
+const REPO  = "tithehub";
+const DISPATCH_EVENT = "tithehub_referral_created";
+const SITE_BASE_URL = "https://tithehub.com";
+
+function slugify(s){
+  return String(s || '')
+    .toLowerCase()
+    .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g,'-')
+    .replace(/^-+|-+$/g,'');
+}
+
+function dispatchToGithub(payload){
+  const pat = PropertiesService.getScriptProperties().getProperty('GITHUB_PAT'); // <-- add your token in Script Properties
+  if(!pat) throw new Error("Missing GITHUB_PAT in Script Properties.");
+  const url = `https://api.github.com/repos/${OWNER}/${REPO}/dispatches`;
+  const body = { event_type: DISPATCH_EVENT, client_payload: payload };
+  const res = UrlFetchApp.fetch(url, {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify(body),
+    headers: { 'Authorization': 'token ' + pat, 'Accept':'application/vnd.github+json' },
+    muteHttpExceptions: true
+  });
+  if(res.getResponseCode() >= 300){
+    throw new Error('GitHub dispatch failed: ' + res.getResponseCode() + ' ' + res.getContentText());
+  }
+}
+
+/*** Trigger for Google Form Submissions ***/
+function onFormSubmit(e){
+  const row = e.namedValues;
+  const name = (row['Name'] || row['Organisation Name'] || [''])[0];
+  const email = (row['Email'] || [''])[0];
+  const orgWebsite = (row['Website'] || [''])[0];
+  const stripeMonthlyLink = (row['Stripe Monthly Link'] || [''])[0];
+  const stripeAnnualLink = (row['Stripe Annual Link'] || [''])[0];
+  const cryptoBTC = (row['BTC Address'] || [''])[0];
+  const cryptoETH = (row['ETH Address'] || [''])[0];
+  const cryptoUSDT = (row['USDT Address'] || [''])[0];
+  const notes = (row['Notes'] || [''])[0];
+
+  const slug = slugify(name);
+  dispatchToGithub({
+    name, email, orgWebsite, stripeMonthlyLink, stripeAnnualLink,
+    cryptoBTC, cryptoETH, cryptoUSDT, notes, slug
+  });
+
+  const donateUrl = SITE_BASE_URL + "/donate/" + slug;
+  const qrUrl = SITE_BASE_URL + "/qrs/" + slug + ".png";
+  MailApp.sendEmail({
+    to: email,
+    subject: "Your TitheHub donation page is being set up",
+    htmlBody: `
+      <p>Hi ${name || ''},</p>
+      <p>Your donation page is being generated and will be live shortly:</p>
+      <p><a href="${donateUrl}">${donateUrl}</a></p>
+      <p>Your QR (may take ~1–2 minutes to appear):<br>
+         <img src="${qrUrl}" width="240" alt="QR"/></p>
+      <p>You can embed your widget with:<br>
+      <code>&lt;script src="${SITE_BASE_URL}/widgets/${slug}.js" async&gt;&lt;/script&gt;</code></p>
+      <p>— TitheHub</p>
+    `
+  });
+}
+
+/*** Web App Endpoint (for voice/agent POST JSON) ***/
+function doPost(e){
+  const data = JSON.parse(e.postData.contents || '{}');
+  if(!data.name){ return ContentService.createTextOutput('Missing name').setMimeType(ContentService.MimeType.TEXT); }
+  if(!data.slug){ data.slug = slugify(data.name); }
+  dispatchToGithub(data);
+  return ContentService.createTextOutput(JSON.stringify({ ok:true, slug:data.slug })).setMimeType(ContentService.MimeType.JSON);
+}
+
+/*** Install trigger:
+    Triggers → Add Trigger → onFormSubmit
+    Event source: From spreadsheet | Event type: On form submit
+***/

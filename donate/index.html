@@ -1,76 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TitheHub Donation Page</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8"/>
+  <title>TitheHub — Donate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #fff;
-      margin: 0;
-      padding: 2rem;
-      color: #111;
-      max-width: 800px;
-      margin-inline: auto;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    #widget-container {
-      margin-top: 2rem;
-    }
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-      border-radius: 8px;
-    }
-    .qr {
-      text-align: center;
-      margin-top: 2rem;
-    }
-    .qr img {
-      max-width: 240px;
-      border-radius: 8px;
-    }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin:0; }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 24px; }
+    .card { border:1px solid #eee; border-radius:16px; padding:24px; box-shadow:0 6px 24px rgba(0,0,0,.06); }
+    .grid { display:grid; gap:16px; grid-template-columns: 1fr; }
+    .row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .btn { display:inline-block; padding:10px 14px; border-radius:10px; border:1px solid #ccc; text-decoration:none; }
+    img.qr { width:100%; max-width:360px; border-radius:10px; }
+    @media (min-width: 800px){ .grid { grid-template-columns: 1fr 360px; } }
   </style>
 </head>
 <body>
-  <h1 id="org-name">Loading...</h1>
-  <p id="org-mission"></p>
-
-  <div id="widget-container"></div>
-  <div class="qr"><img id="qr-code" src="" alt="QR Code"></div>
+  <div class="wrap">
+    <div class="card">
+      <div id="content" class="grid">
+        <div>
+          <h1 id="orgName">Loading…</h1>
+          <p id="orgDesc">Please wait while we load this organization.</p>
+          <div class="row" id="ctaRow"></div>
+          <h3>Crypto addresses</h3>
+          <ul id="cryptoList"></ul>
+        </div>
+        <div>
+          <img id="qrImg" class="qr" alt="Donation QR"/>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get("ref");
+    (async function(){
+      const parts = location.pathname.replace(/\/+$/,'').split('/donate/');
+      const base = parts[0];
+      const slug = (parts[1]||'').split('/').pop();
+      const jsonUrl = base + '/orgs/' + slug + '.json';
+      try{
+        const org = await (await fetch(jsonUrl, {cache:'no-store'})).json();
+        document.title = 'Donate — ' + (org.name || slug);
+        document.getElementById('orgName').textContent = org.name || slug;
+        document.getElementById('orgDesc').textContent = org.notes || 'Support our mission.';
+        document.getElementById('qrImg').src = org.qrUrl;
 
-    async function loadOrgData() {
-      if (!slug) {
-        document.getElementById("org-name").textContent = "Missing referral ID.";
-        return;
+        const row = document.getElementById('ctaRow');
+        function btn(href, text){
+          const a = document.createElement('a');
+          a.className='btn';
+          a.href=href; a.target='_blank'; a.rel='noopener'; a.textContent=text;
+          row.appendChild(a);
+        }
+        if(org.stripeMonthlyLink) btn(org.stripeMonthlyLink, 'Give Monthly');
+        if(org.stripeAnnualLink) btn(org.stripeAnnualLink, 'Give Annually');
+        if(org.orgWebsite) btn(org.orgWebsite, 'Visit Website');
+
+        const ul = document.getElementById('cryptoList');
+        for(const [k,v] of Object.entries(org.crypto || {})){
+          if(!v) continue;
+          const li = document.createElement('li');
+          li.textContent = k + ': ' + v;
+          ul.appendChild(li);
+        }
+      }catch(e){
+        document.getElementById('orgName').textContent = 'Not Found';
+        document.getElementById('orgDesc').textContent = 'This donation page does not exist.';
       }
-
-      const res = await fetch("../donation.json");
-      const data = await res.json();
-
-      const org = data[slug];
-      if (!org) {
-        document.getElementById("org-name").textContent = "Donation page not found.";
-        return;
-      }
-
-      document.getElementById("org-name").textContent = org.name;
-      document.getElementById("org-mission").textContent = org.mission || "";
-      document.getElementById("widget-container").innerHTML = `<iframe src='${org.widget}'></iframe>`;
-      document.getElementById("qr-code").src = `../qr/qr-${slug}.png`;
-    }
-
-    loadOrgData();
+    })();
   </script>
 </body>
 </html>
