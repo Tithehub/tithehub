@@ -1,0 +1,155 @@
+name: fix-everything (self-heal + rebuild)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install system tools
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y imagemagick jq curl
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+
+      - name: Install deps (if any)
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          elif [ -f package.json ]; then
+            npm i
+          else
+            echo "No package.json found; continuing."
+          fi
+
+      - name: Repair PNGs (strip metadata / salvage unreadable)
+        shell: bash
+        run: |
+          shopt -s globstar nullglob
+          REPAIRED=0 REPLACED=0
+          for f in **/*.png; do
+            if identify -quiet "$f" >/dev/null 2>&1; then
+              convert "$f" -strip "$f" || true
+            else
+              echo "⚠️  $f unreadable"
+              if convert "$f" -strip "$f".fixed 2>/dev/null; then
+                mv "$f".fixed "$f"; echo "   salvaged $f"; REPAIRED=$((REPAIRED+1))
+              else
+                echo "   replacing $f with transparent placeholder"
+                convert -size 512x512 xc:none -alpha on "$f"
+                REPLACED=$((REPLACED+1))
+              fi
+            fi
+          done
+          echo "PNG summary → repaired=$REPAIRED replaced=$REPLACED"
+
+      - name: Slug-fix injection + pretty URLs for all donate pages
+        shell: bash
+        run: |
+          INJECT='<!-- slug-fix:start --><script>(function(){try{var p=window.location.pathname.split("/").filter(Boolean);var last=p.pop()||"";if(/^index(\.html)?$/i.test(last)){last=p.pop()||last;}var slug=String(last).replace(/\.html$/i,"");window.TH_SLUG=slug;}catch(e){console.error("slug-fix",e);}})();</script><!-- slug-fix:end -->'
+          shopt -s nullglob
+          mkdir -p donate
+          for f in donate/*.html; do
+            # inject once per file
+            if ! grep -q 'slug-fix:start' "$f"; then
+              if grep -i -q '</head>' "$f"; then
+                awk -v inj="$INJECT" 'BEGIN{IGNORECASE=1} {print} /<\/head>/{print inj; IGNORECASE=0}' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
+              else
+                printf '%s\n%s\n' "$INJECT" "$(cat "$f")" > "$f.tmp" && mv "$f.tmp" "$f"
+              fi
+              echo "patched $f"
+            fi
+            slug="$(basename "$f" .html)"
+            mkdir -p "donate/$slug"
+            cat > "donate/$slug/index.html" <<HTML
+<!doctype html><meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=../$slug.html">
+<link rel="canonical" href="../$slug.html">
+<title>Redirecting…</title>
+<p>Redirecting to <a href="../$slug.html">$slug</a>.</p>
+HTML
+          done
+
+      - name: Ensure demo exists in donation.json
+        shell: bash
+        run: |
+          [ -f donation.json ] || echo '{}' > donation.json
+          tmp=$(mktemp)
+          jq '.["tithehub-demo-church"] //= {
+                "name":"TitheHub Demo Church",
+                "email":"demo@tithehub.com",
+                "orgWebsite":"https://tithehub.com",
+                "stripeMonthlyLink":"https://buy.stripe.com/test_monthly_link",
+                "stripeAnnualLink":"https://buy.stripe.com/test_annual_link",
+                "cryptoBTC":"37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5",
+                "notes":"Thank you for supporting our mission."
+              }' donation.json > "$tmp" && mv "$tmp" donation.json
+
+      - name: Generate assets (uses SITE_BASE_URL repo var if set)
+        env:
+          SITE_BASE_URL: ${{ vars.SITE_BASE_URL || 'https://tithehub.com' }}
+        shell: bash
+        run: |
+          echo "SITE_BASE_URL=$SITE_BASE_URL"
+          if npm run | grep -q "^  generate"; then
+            npm run generate
+          elif [ -f scripts/generate_assets.mjs ]; then
+            node scripts/generate_assets.mjs
+          else
+            echo "No generator (npm run generate / scripts/generate_assets.mjs) — skipping."
+          fi
+
+      - name: Commit & push changes if any
+        shell: bash
+        run: |
+          if ! git diff --quiet; then
+            git config user.name  "tithehub-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add -A
+            git commit -m "ci: self-heal slugs, redirects, PNGs; regen assets"
+            git push
+          else
+            echo "No changes to commit."
+          fi
+
+      - name: Wait for GitHub Pages to serve each slug
+        shell: bash
+        run: |
+          SITE="${{ vars.SITE_BASE_URL || 'https://tithehub.com' }}"
+          shopt -s nullglob
+          SLUGS=$(ls -1 donate/*.html 2>/dev/null | sed -e 's#^donate/##' -e 's#\.html$##' || true)
+          if [ -z "$SLUGS" ]; then
+            echo "No donate pages found."
+            exit 0
+          fi
+          for slug in $SLUGS; do
+            echo "Checking $slug…"
+            for i in {1..24}; do
+              P="$SITE/donate/$slug"
+              Q="$SITE/qrs/$slug.png"
+              pc=$(curl -s -o /dev/null -w "%{http_code}" "$P")
+              qc=$(curl -s -o /dev/null -w "%{http_code}" "$Q")
+              echo "  try $i: page=$pc  qr=$qc"
+              if [ "$pc" = "200" ] && [ "$qc" = "200" ]; then
+                echo "  ✅ OK $slug"
+                break
+              fi
+              sleep 10
+            done
+          done
