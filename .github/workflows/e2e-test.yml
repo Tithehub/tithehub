@@ -1,0 +1,20 @@
+name: E2E Test (TitheHub demo)
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: sudo apt-get update -y && sudo apt-get install -y jq curl
+      - name: Quick donation.json check
+        run: |
+          grep -q '"tithehub-demo-church"' donation.json || (echo "missing demo slug" && exit 1)
+      - name: Print test targets
+        run: |
+          echo "PAGE=https://tithehub.com/donate/tithehub-demo-church"
+          echo "QR=https://tithehub.com/qrs/tithehub-demo-church.png"
