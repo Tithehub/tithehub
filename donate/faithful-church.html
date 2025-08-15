@@ -10,6 +10,23 @@
     .wallet { background: #eee; padding: 10px; border-radius: 5px; font-family: monospace; margin: 20px auto; display: inline-block; }
   </style>
 </head>
+<!-- slug-normalize:start -->
+<script>
+(function () {
+  try {
+    var parts = (window.location.pathname || "").split("/").filter(Boolean);
+    var last  = parts.pop() || "";
+    if (/^index(.html?)?$/i.test(last)) last = parts.pop() || last;  // /donate/slug/index.html
+    var normalized = String(last).replace(/.html?$/i, "");           // drop .html
+    window.TH_SLUG = normalized;
+    window.slug    = normalized; // expose legacy global if page expects "slug"
+    console.log("[tithehub] slug =", normalized);
+  } catch (e) {
+    console.error("[tithehub] slug-normalize error", e);
+  }
+})();
+</script>
+<!-- slug-normalize:end -->
 <!-- slug-fix:start --><script>(function(){try{var p=window.location.pathname.split("/").filter(Boolean);var last=p.pop()||"";if(/^index(.html)?$/i.test(last)){last=p.pop()||last;}var slug=String(last).replace(/.html$/i,"");window.TH_SLUG=slug;}catch(e){console.error("slug-fix",e);}})();</script><!-- slug-fix:end -->
 <body>
   <div class="container">
