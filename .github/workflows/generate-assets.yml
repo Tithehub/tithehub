@@ -1,46 +1,16 @@
-name: Generate referral assets
-on:
-  repository_dispatch:
-    types: [tithehub_referral_created]
-  workflow_dispatch: {}
-
-permissions:
-  contents: write
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install deps
-        run: npm ci || npm i
-
-      - name: Validate & heal assets
-        env:
-          SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
-          GITHUB_EVENT_PATH: ${{ github.event_path }}
-        run: node scripts/validate_and_heal.mjs
-
-      - name: Generate assets (idempotent)
-        env:
-          SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
-          GITHUB_EVENT_PATH: ${{ github.event_path }}
-        run: node scripts/generate_assets.mjs || true
-
-      - name: Post-heal hint
-        run: node scripts/post_dispatch_retry.mjs
-
-      - name: Commit & push changes
-        uses: EndBug/add-and-commit@v9
-        with:
-          author_name: tithehub-bot
-          author_email: bot@tithehub.com
-          message: "chore(ci): heal+generate org, QR, widget"
-          add: "."
+    - name: Verify deployment
+      run: |
+        PAGE_URL="https://tithehub.com/donate/tithehub-demo-church.html"
+        QR_URL="https://tithehub.com/qrs/tithehub-demo-church.png"
+        for i in {1..10}; do
+          PAGE_STATUS=$(curl -o /dev/null -s -w "%{http_code}" "$PAGE_URL")
+          QR_STATUS=$(curl -o /dev/null -s -w "%{http_code}" "$QR_URL")
+          echo "try $i: page=$PAGE_STATUS qr=$QR_STATUS"
+          if [ "$PAGE_STATUS" = "200" ] && [ "$QR_STATUS" = "200" ]; then
+            echo "✅ Verified deployment!"
+            exit 0
+          fi
+          echo "⏳ Retrying in 30s..."
+          sleep 30
+        done
+        echo "❌ Deployment failed after retries" && exit 1
