@@ -8,5 +8,14 @@
     "name": "Freemasons are gay Church ",
     "mission": "",
     "widget": "https://tithehub.com/widget/freemasonsaregaychurch"
+  },
+  "tithehub-demo-church": {
+    "name": "TitheHub Demo Church",
+    "email": "demo@tithehub.com",
+    "orgWebsite": "https://tithehub.com",
+    "stripeMonthlyLink": "https://buy.stripe.com/test_monthly_link",
+    "stripeAnnualLink": "https://buy.stripe.com/test_annual_link",
+    "cryptoBTC": "37LoinW7gvJEYGigZAHCeRdL84iwjkcEY5",
+    "notes": "Thank you for supporting our mission."
   }
 }
